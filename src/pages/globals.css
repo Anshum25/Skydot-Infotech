@@ -1,0 +1,238 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lugrasimo&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >=1400px) {
+    max-width: 1400px;
+  }
+}
+
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-border, currentColor);
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F7F8FA;
+    --foreground: #050505;
+
+    --card: #FFFFFF;
+    --card-foreground: #050505;
+
+    --popover: #FFFFFF;
+    --popover-foreground: #050505;
+
+    --primary: #1677FF;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #F0F2F5;
+    --secondary-foreground: #050505;
+
+    --skydot-orange: #FF6B2C;
+    --skydot-navy: #07111F;
+    --skydot-black: #050505;
+
+    --muted: #EBEDF0;
+    --muted-foreground: #6B7280;
+
+    --accent: #EEF2FF;
+    --accent-foreground: #1677FF;
+
+    --destructive: #DC2626;
+    --destructive-foreground: #FFFFFF;
+
+    --border: #E4E7EC;
+    --input: #E4E7EC;
+    --ring: #1677FF;
+
+    --radius: 0.25rem;
+  }
+
+  .dark {
+    --background: #07111F;
+    --foreground: #FFFFFF;
+
+    --card: #0A1628;
+    --card-foreground: #FFFFFF;
+
+    --popover: #0A1628;
+    --popover-foreground: #FFFFFF;
+
+    --primary: #1677FF;
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #111D2E;
+    --secondary-foreground: #FFFFFF;
+
+    --brand-orange: #FF6B2C;
+    --skydot-orange: #FF6B2C;
+    --skydot-black: #050505;
+    --skydot-navy: #07111F;
+    --skydot-blue: #1677FF;
+
+    --muted: #111D2E;
+    --muted-foreground: #8B95A8;
+
+    --accent: #111D2E;
+    --accent-foreground: #FFFFFF;
+
+    --destructive: #FFFFFF;
+    --destructive-foreground: #07111F;
+
+    --border: #1A2639;
+    --input: #1A2639;
+    --ring: #1677FF;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Home section base */
+.home-section {
+  position: relative;
+}
+
+/* Editorial label style */
+.home-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+/* Tight headline style */
+.home-headline {
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+/* Architectural grid background */
+.home-grid-bg {
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Skydot brand variables */
+:root {
+  --skydot-orange: #FF6B2C;
+  --skydot-navy: #07111F;
+  --skydot-black: #050505;
+  --skydot-blue: #1677FF;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes data-flow {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.mask-edges {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.ease-custom {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Text balance for headlines */
+.text-balance {
+  text-wrap: balance;
+}
+
+.home-section {
+  position: relative;
+}
+
+.home-headline {
+  font-family: var(--font-heading);
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.home-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.home-grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe-only {
+    animation: none !important;
+    transition: none !important;
+  }
+}
