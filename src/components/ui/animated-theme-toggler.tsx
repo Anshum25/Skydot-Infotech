@@ -102,7 +102,7 @@ export const AnimatedThemeToggler = ({ className }: AnimatedThemeTogglerProps) =
       onClick={onToggle}
       aria-label="Switch theme"
       className={cn(
-        "flex items-center justify-center p-2 rounded-full outline-none focus:outline-none active:outline-none focus:ring-0 cursor-pointer border border-border bg-background hover:bg-accent transition-colors",
+        "flex items-center justify-center p-2 rounded-full outline-none focus:outline-none active:outline-none focus:ring-0 cursor-pointer bg-background hover:bg-accent transition-colors",
         className
       )}
       type="button"

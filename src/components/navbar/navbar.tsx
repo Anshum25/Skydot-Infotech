@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { MainNav } from "./main-nav";
+import { useNavigate } from "react-router-dom";
 import { MobileNav } from "./mobile-nav";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { Logo } from "@/components/ui/logo";
 import { motion } from "framer-motion";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export function Navbar() {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -40,11 +43,11 @@ export function Navbar() {
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "fixed top-5 left-1/2 z-50 flex items-center",
-        "w-[95%] max-w-[1200px] rounded-full px-4 py-2",
+        "w-[95%] max-w-[1200px] rounded-xl px-4 py-2",
         "transition-all duration-500",
         isScrolled
-          ? "bg-background/80 backdrop-blur-2xl border border-border shadow-xl shadow-black/5"
-          : "bg-background/40 backdrop-blur-xl border border-border/50 shadow-lg"
+          ? "bg-background/80 backdrop-blur-2xl border border-border"
+          : "bg-background/40 backdrop-blur-xl border border-border/50"
       )}
     >
       {/* Logo */}
@@ -64,15 +67,11 @@ export function Navbar() {
       <div className="ml-auto flex items-center gap-2 shrink-0">
         <div className="hidden lg:flex items-center gap-2">
           <AnimatedThemeToggler />
-          <Link
-            to="/contact"
-            className={cn(
-              "inline-flex items-center justify-center h-9 px-5 rounded-full text-sm font-medium transition-all duration-200",
-              "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95"
-            )}
-          >
-            Get in touch
-          </Link>
+          <InteractiveHoverButton 
+            text="Get in touch" 
+            onClick={() => navigate('/contact')} 
+            className="h-10 ml-2 border-none bg-primary text-primary-foreground hover:bg-primary/90"
+          />
         </div>
         <div className="lg:hidden flex items-center gap-2">
           <AnimatedThemeToggler />

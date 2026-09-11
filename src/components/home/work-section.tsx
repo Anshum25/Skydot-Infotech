@@ -25,28 +25,28 @@ const StickyProjectCard = ({
   return (
     <div
       ref={container}
-      className="sticky top-0 flex h-screen w-full items-center justify-center px-4 md:px-6"
+      className="sticky top-0 flex h-screen w-full items-start justify-center px-4 md:px-6 pt-[10vh]"
     >
       <motion.article
         style={{
           scale,
-          top: `calc(5vh + ${i * 30}px)`,
+          top: `calc(${i * 12}vh + ${i * 15}px)`,
         }}
         className="relative origin-top w-full max-w-5xl bg-white dark:bg-[#0A1628] border border-border shadow-2xl rounded-3xl overflow-hidden flex flex-col will-change-transform"
       >
         <Link 
           to={`/work/${project.slug}`} 
-          className="flex flex-col h-full group p-8 md:p-12 lg:p-16 hover:bg-secondary/20 transition-colors duration-500"
+          className="flex flex-col h-full group px-8 py-6 md:px-12 md:py-8 lg:px-16 lg:py-10 hover:bg-secondary/20 transition-colors duration-500"
         >
           <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-start h-full">
             <div className="flex flex-col h-full">
-              <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="flex flex-wrap items-center gap-3 mb-4">
                 <span className="home-label text-[var(--skydot-blue)]">{project.industry}</span>
                 <span className="h-px w-4 bg-border" />
                 <span className="home-label">{project.technologies.slice(0, 3).join(" · ")}</span>
               </div>
               
-              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight mb-6 group-hover:text-[var(--skydot-blue)] transition-colors duration-300 text-balance">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-tight mb-4 group-hover:text-[var(--skydot-blue)] transition-colors duration-300 text-balance line-clamp-2">
                 {project.title}
               </h3>
               

@@ -5,101 +5,52 @@ import { services } from "@/data/services";
 import { products } from "@/data/products";
 import { industries } from "@/data/industries";
 import { Logo } from "@/components/ui/logo";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { LocationMap } from "./location-map";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const wrapperRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState<number | 'auto'>('auto');
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      gsap.registerPlugin(ScrollTrigger);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-    const observer = new ResizeObserver((entries) => {
-      setHeight(entries[0].contentRect.height);
-    });
-    observer.observe(footerRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !wrapperRef.current || !contentRef.current || height === 'auto') return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: wrapperRef.current,
-            start: "top 70%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
-    }, wrapperRef);
-
-    return () => ctx.revert();
-  }, [height]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div 
-      ref={wrapperRef}
-      className="relative w-full"
-      style={{ 
-        clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
-        height: height !== 'auto' ? `${height}px` : 'auto'
-      }}
+    <footer
+      ref={footerRef}
+      className="w-full bg-background text-foreground border-t border-border pt-28 pb-10 font-sans"
     >
-      <footer 
-        ref={footerRef}
-        className={`w-full bg-background text-foreground border-t border-border pt-24 pb-12 font-sans overflow-hidden ${height !== 'auto' ? 'fixed bottom-0 left-0' : 'relative'}`}
-      >
-        <div ref={contentRef} className="w-full flex flex-col justify-between h-full">
+        <div className="w-full flex flex-col justify-between h-full">
           {/* Massive Call to Action */}
-          <div className="container mx-auto px-6 md:px-12 mb-24 flex flex-col items-center text-center">
+          <div className="container mx-auto px-6 md:px-12 mb-16 flex flex-col items-center text-center">
             <h2 
-              className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-8"
+              className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-6"
               style={{ fontFamily: "var(--font-heading)" }}
             >
               Experience <span className="text-[#1677FF]" style={{ fontFamily: '"Lugrasimo", cursive', fontWeight: 400, fontStyle: 'normal' }}>Sky</span><span className="text-[#FF6B2C]" style={{ fontFamily: '"Lugrasimo", cursive', fontWeight: 400, fontStyle: 'normal' }}>dot.</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl font-light mb-10">
+            <p className="text-xl text-muted-foreground max-w-2xl font-light mb-8">
               Join the forward-thinking teams engineering the future of enterprise software, AI, and digital solutions.
             </p>
           </div>
 
           <div className="container mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 mb-20 pt-16 border-t border-border">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 mb-16 pt-14 border-t border-border">
               <div className="lg:col-span-4 flex flex-col items-start">
-                <Link to="/" className="inline-block hover:opacity-80 transition-opacity mb-8">
+                <Link to="/" className="inline-block hover:opacity-80 transition-opacity mb-6">
                   <Logo />
                 </Link>
                 <p className="text-sm font-semibold mb-2">
                   {companyData.tagline}
                 </p>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mb-8">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mb-2">
                   {companyData.description}
                 </p>
+
+                <LocationMap />
                 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 mt-2">
                   <a
                     href={`mailto:${companyData.email}`}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
@@ -190,7 +141,7 @@ export function Footer() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-border text-[11px] font-medium uppercase tracking-widest text-muted-foreground relative">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-6 border-t border-border text-[11px] font-medium uppercase tracking-widest text-muted-foreground relative">
               <p>
                 © {currentYear} {companyData.name}.
               </p>
@@ -212,7 +163,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+    </footer>
   );
 }

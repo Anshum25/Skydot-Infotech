@@ -1,5 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header";
 import { ContactCtaSection } from "@/components/sections/contact-cta-section";
+import { HoverPreview } from "@/components/ui/hover-preview";
 
 
 
@@ -12,6 +13,9 @@ export default function AboutPage() {
         title={<>About <span className="text-primary">Skydot Infotech</span></>}
         description="Skydot Infotech is a mature technology partner focused on solving complex business challenges through rigorous software engineering and digital innovation."
       />
+
+      <HoverPreview />
+      {/* Trigger HMR */}
 
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
