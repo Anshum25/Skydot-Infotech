@@ -28,7 +28,7 @@ export function Footer() {
               className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-6"
               style={{ fontFamily: "var(--font-heading)" }}
             >
-              Experience <span className="text-[#1677FF]" style={{ fontFamily: '"Lugrasimo", cursive', fontWeight: 400, fontStyle: 'normal' }}>Sky</span><span className="text-[#FF6B2C]" style={{ fontFamily: '"Lugrasimo", cursive', fontWeight: 400, fontStyle: 'normal' }}>dot.</span>
+              Experience <span className="text-[#1677FF]">Sky</span><span className="text-[#FF6B2C]">dot.</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl font-light mb-8">
               Join the forward-thinking teams engineering the future of enterprise software, AI, and digital solutions.
@@ -37,62 +37,19 @@ export function Footer() {
 
           <div className="container mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 mb-16 pt-14 border-t border-border">
-              <div className="lg:col-span-4 flex flex-col items-start">
+              <div className="lg:col-span-3">
                 <Link to="/" className="inline-block hover:opacity-80 transition-opacity mb-6">
                   <Logo />
                 </Link>
                 <p className="text-sm font-semibold mb-2">
                   {companyData.tagline}
                 </p>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mb-2">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                   {companyData.description}
                 </p>
-
-                <LocationMap />
-                
-                <div className="flex flex-wrap gap-4 mt-2">
-                  <a
-                    href={`mailto:${companyData.email}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
-                  >
-                    Email <ArrowUpRight className="h-3 w-3" />
-                  </a>
-                  <a
-                    href={companyData.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
-                  >
-                    LinkedIn <ArrowUpRight className="h-3 w-3" />
-                  </a>
-                  <a
-                    href={companyData.social.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
-                  >
-                    X (Twitter) <ArrowUpRight className="h-3 w-3" />
-                  </a>
-                </div>
               </div>
 
-              <div className="lg:col-span-2">
-                <p className="home-label mb-6 text-foreground">Solutions</p>
-                <ul className="space-y-4">
-                  {services.slice(0, 5).map((service) => (
-                    <li key={service.slug}>
-                      <Link
-                        to={`/solutions/${service.slug}`}
-                        className="text-[13px] font-medium text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
-                      >
-                        {service.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 lg:col-start-5">
                 <p className="home-label mb-6 text-foreground">Products</p>
                 <ul className="space-y-4">
                   {products.slice(0, 5).map((product) => (
@@ -105,19 +62,27 @@ export function Footer() {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <Link
+                      to="/products"
+                      className="text-[13px] font-medium text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
+                    >
+                      All Products
+                    </Link>
+                  </li>
                 </ul>
               </div>
 
               <div className="lg:col-span-2">
-                <p className="home-label mb-6 text-foreground">Industries</p>
+                <p className="home-label mb-6 text-foreground">Resources</p>
                 <ul className="space-y-4">
-                  {industries.map((industry) => (
-                    <li key={industry.slug}>
+                  {["Documentation", "Case Studies", "Insights", "API Reference"].map((page) => (
+                    <li key={page}>
                       <Link
-                        to={`/industries/${industry.slug}`}
+                        to={`/${page.toLowerCase().replace(' ', '-')}`}
                         className="text-[13px] font-medium text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
                       >
-                        {industry.name}
+                        {page}
                       </Link>
                     </li>
                   ))}
@@ -127,7 +92,7 @@ export function Footer() {
               <div className="lg:col-span-2">
                 <p className="home-label mb-6 text-foreground">Company</p>
                 <ul className="space-y-4">
-                  {["About", "Work", "Insights", "Contact"].map((page) => (
+                  {["About", "Work", "Careers", "Contact"].map((page) => (
                     <li key={page}>
                       <Link
                         to={`/${page.toLowerCase()}`}
@@ -138,6 +103,40 @@ export function Footer() {
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              <div className="lg:col-span-3">
+                <p className="home-label mb-6 text-foreground">Contact</p>
+                <div className="mb-4">
+                  <LocationMap />
+                </div>
+                
+                <div className="flex flex-col gap-3 mt-4">
+                  <a
+                    href={`mailto:${companyData.email}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
+                  >
+                    <ArrowUpRight className="h-3 w-3" /> {companyData.email}
+                  </a>
+                  <div className="flex gap-4 mt-2">
+                    <a
+                      href={companyData.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
+                    >
+                      LinkedIn <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                    <a
+                      href={companyData.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-[var(--skydot-blue)] transition-colors"
+                    >
+                      X <ArrowUpRight className="h-3 w-3" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 

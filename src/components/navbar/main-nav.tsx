@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
@@ -64,28 +65,7 @@ export function MainNav({ isTransparent = false }: { isTransparent?: boolean }) 
               Products
             </MotionNavigationMenuTrigger>
             <MotionNavigationMenuContent highlightClassName={highlightClassName}>
-              <div className="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {products.slice(0, 6).map((product) => (
-                  <MotionNavigationMenuLink
-                    as={Link}
-                    key={product.title}
-                    to={`/products/${product.slug}`}
-                  >
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-primary mb-1 block">
-                      {product.category}
-                    </span>
-                    <span className="block text-sm font-medium mb-1">{product.title}</span>
-                    <span className="text-muted-foreground block text-xs line-clamp-2">
-                      {product.description}
-                    </span>
-                  </MotionNavigationMenuLink>
-                ))}
-                <div className="col-span-full mt-2 pt-2 border-t border-border/50">
-                  <MotionNavigationMenuLink as={Link} to="/products" className="flex items-center gap-2 w-full text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-widest p-2">
-                    Explore all products <ArrowRight className="size-3" />
-                  </MotionNavigationMenuLink>
-                </div>
-              </div>
+              <ProductsDropdownContent />
             </MotionNavigationMenuContent>
           </MotionNavigationMenuItem>
 
@@ -154,3 +134,89 @@ export function MainNav({ isTransparent = false }: { isTransparent?: boolean }) 
     </div>
   );
 }
+
+function ProductsDropdownContent() {
+  const [activeProduct, setActiveProduct] = useState(products[0]);
+
+  return (
+    <div className="flex w-[320px] sm:w-[500px] md:w-[700px] lg:w-[850px] min-h-[380px] p-0 overflow-hidden">
+      {/* Left Sidebar - Product List */}
+      <div className="w-[220px] md:w-[280px] shrink-0 bg-muted/20 border-r border-border p-3 flex flex-col">
+        <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 px-2">Our Products</h4>
+        <ul className="space-y-1 flex-1 overflow-y-auto">
+          {products.map(product => (
+            <li key={product.slug}>
+              <button
+                className={cn("w-full text-left px-3 py-2 rounded-md text-sm transition-all duration-200", 
+                  activeProduct.slug === product.slug 
+                    ? "bg-primary text-primary-foreground font-medium shadow-sm" 
+                    : "hover:bg-accent/50 hover:text-accent-foreground text-foreground/80"
+                )}
+                onMouseEnter={() => setActiveProduct(product)}
+                onFocus={() => setActiveProduct(product)}
+              >
+                {product.title}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-4 pt-4 border-t border-border/50 px-2">
+          <MotionNavigationMenuLink as={Link} to="/products" className="flex items-center gap-2 w-full text-xs font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-widest p-0">
+            All products <ArrowRight className="size-3" />
+          </MotionNavigationMenuLink>
+        </div>
+      </div>
+      
+      {/* Right Content - Product Details */}
+      <div className="flex-1 p-6 md:p-8 flex flex-col bg-card relative overflow-hidden">
+        {/* Decorative background element */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div className="relative z-10 flex flex-col h-full">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <span className="text-[10px] uppercase font-bold tracking-wider text-primary mb-1 block">
+                {activeProduct.category}
+              </span>
+              <h3 className="text-2xl font-bold tracking-tight text-foreground">{activeProduct.title}</h3>
+            </div>
+            <MotionNavigationMenuLink as={Link} to={`/products/${activeProduct.slug}`} className="bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground text-xs font-semibold px-4 py-2 rounded-full transition-colors flex items-center gap-1.5 shrink-0">
+              Details <ArrowRight className="size-3" />
+            </MotionNavigationMenuLink>
+          </div>
+          
+          <p className="text-muted-foreground text-sm mb-8 leading-relaxed line-clamp-3">
+            {activeProduct.description}
+          </p>
+          
+          <div className="flex-1">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
+              <div className="h-px w-6 bg-border"></div>
+              Core Features
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3">
+              {activeProduct.features.slice(0, 6).map((feature, idx) => (
+                <div key={idx} className="flex items-start gap-2.5">
+                  <div className="mt-1.5 size-1.5 rounded-full bg-primary shrink-0"></div>
+                  <span className="text-sm font-medium text-foreground/80 leading-tight">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="mt-8 pt-4 border-t border-border/50">
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="text-xs text-muted-foreground mr-2 font-medium">Built for:</span>
+              {activeProduct.industries.map(ind => (
+                <span key={ind} className="text-[10px] uppercase font-bold tracking-wider bg-accent text-accent-foreground px-2 py-1 rounded-sm">
+                  {ind}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
