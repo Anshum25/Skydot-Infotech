@@ -1,10 +1,7 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { ContactCtaSection } from "@/components/sections/contact-cta-section";
+import { HomeFinalCtaSection } from "@/components/home/final-cta";
 import { ArrowRight, Factory, GraduationCap, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
-
-
-
 
 export default function IndustriesPage() {
   const industries = [
@@ -15,7 +12,8 @@ export default function IndustriesPage() {
       solution: "We build secure, reliable management systems (like IRTPMS) capable of handling critical infrastructure data with strict access controls.",
       products: "IRTPMS, IRIMEE, IRISET",
       icon: Building2,
-      slug: "government-railways"
+      slug: "government-railways",
+      colorClass: "text-[var(--skydot-blue)]"
     },
     {
       name: "Education",
@@ -24,7 +22,8 @@ export default function IndustriesPage() {
       solution: "We provide comprehensive digital education ecosystems, from learning management to automated examinations.",
       products: "LMS, Online Examination System, OMR Software, Education Directory",
       icon: GraduationCap,
-      slug: "education"
+      slug: "education",
+      colorClass: "text-[var(--skydot-orange)]"
     },
     {
       name: "Manufacturing & Logistics",
@@ -33,7 +32,8 @@ export default function IndustriesPage() {
       solution: "We implement robust ERP and transport software to provide end-to-end supply chain visibility and automated resource planning.",
       products: "ERP, Transport Software",
       icon: Factory,
-      slug: "manufacturing"
+      slug: "manufacturing",
+      colorClass: "text-green-500"
     }
   ];
 
@@ -45,47 +45,53 @@ export default function IndustriesPage() {
         description="We engineer software that addresses the unique regulatory, operational, and scalability challenges of your specific sector."
       />
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="space-y-16">
+      <section className="home-section relative py-24 md:py-32 bg-background border-t border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          
+          <div className="space-y-24 md:space-y-32">
             {industries.map((industry, i) => (
-              <div key={i} className="grid md:grid-cols-2 gap-12 items-center bg-secondary/30 p-8 md:p-12 rounded-3xl border border-border">
-                <div>
-                  <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+              <div key={i} className="grid lg:grid-cols-2 gap-16 md:gap-24 items-center">
+                <div className="order-2 lg:order-1 relative">
+                  <div className="grid gap-px bg-border shadow-sm">
+                    <div className="bg-background p-7 md:p-9 hover:bg-secondary/40 transition-colors duration-300">
+                      <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">Common Challenges</h3>
+                      <p className="text-foreground leading-relaxed">{industry.challenges}</p>
+                    </div>
+                    <div className="bg-background p-7 md:p-9 hover:bg-secondary/40 transition-colors duration-300">
+                      <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">How Skydot Helps</h3>
+                      <p className="text-foreground leading-relaxed">{industry.solution}</p>
+                    </div>
+                    <div className="bg-background p-7 md:p-9 hover:bg-secondary/40 transition-colors duration-300">
+                      <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-3">Relevant Products</h3>
+                      <p className="text-foreground leading-relaxed font-medium">{industry.products}</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="order-1 lg:order-2">
+                  <div className={`w-14 h-14 flex items-center justify-center shrink-0 mb-8 ${industry.colorClass}`}>
                     <industry.icon className="w-8 h-8" />
                   </div>
-                  <h2 className="text-3xl font-bold mb-4">{industry.name}</h2>
-                  <p className="text-lg text-muted-foreground mb-8">
+                  <h2 className="home-headline text-3xl md:text-5xl font-light text-balance mb-6">
+                    {industry.name}
+                  </h2>
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-normal mb-8">
                     {industry.overview}
                   </p>
                   
-                  <Link to={`/industries/${industry.slug}`} className="inline-flex items-center justify-center h-12 px-6 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors">
+                  <Link to={`/industries/${industry.slug}`} className={`inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest group ${industry.colorClass}`}>
                     Explore Solutions
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="bg-background border border-border p-6 rounded-2xl">
-                    <h3 className="font-semibold text-foreground mb-2">Common Challenges</h3>
-                    <p className="text-muted-foreground text-sm">{industry.challenges}</p>
-                  </div>
-                  <div className="bg-background border border-border p-6 rounded-2xl">
-                    <h3 className="font-semibold text-foreground mb-2">How Skydot Helps</h3>
-                    <p className="text-muted-foreground text-sm">{industry.solution}</p>
-                  </div>
-                  <div className="bg-background border border-border p-6 rounded-2xl">
-                    <h3 className="font-semibold text-foreground mb-2">Relevant Products</h3>
-                    <p className="text-muted-foreground text-sm font-medium">{industry.products}</p>
-                  </div>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      <ContactCtaSection />
+      <HomeFinalCtaSection />
     </>
   );
 }

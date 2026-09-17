@@ -8,34 +8,70 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, description, eyebrow }: PageHeaderProps) {
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden bg-background border-b border-border">
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-primary/5 via-primary/5 to-transparent blur-3xl -z-10" />
+    <section className="relative min-h-[70vh] flex flex-col justify-center text-foreground overflow-hidden border-b border-border">
+      <HeroBg />
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
+      <div className="container relative z-10 mx-auto px-6 md:px-12 pt-40 pb-16">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="max-w-4xl mx-auto flex flex-col items-center"
+          className="max-w-4xl"
         >
           {eyebrow && (
-            <div className="inline-flex items-center rounded-full border border-border bg-background shadow-sm px-4 py-1.5 text-sm font-medium text-foreground mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-[var(--skydot-orange)] mr-2"></span>
-              {eyebrow}
+            <div className="mb-6 md:mb-8">
+              <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">
+                <span className="w-4 h-px bg-[var(--skydot-orange)]" />
+                {eyebrow}
+              </span>
             </div>
           )}
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground mb-6 leading-[1.1]">
+          <h1 className="home-headline text-[clamp(2.4rem,5.5vw,5.2rem)] font-light tracking-tight mb-5 md:mb-6 text-balance">
             {title}
           </h1>
           
           {description && (
-            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed font-normal">
               {description}
             </p>
           )}
         </motion.div>
       </div>
     </section>
+  );
+}
+
+/* ─── 3D Grid Background ─────────────────────────── */
+function HeroBg() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none bg-background z-[-1]" aria-hidden>
+      <div
+        className="absolute inset-0 flex flex-col text-foreground opacity-[0.12] dark:opacity-[0.2]"
+        style={{
+          maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)'
+        }}
+      >
+        {/* Ceiling */}
+        <div
+          className="w-[400%] h-[50%] absolute top-0 left-[-150%] origin-bottom"
+          style={{
+            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+            transform: 'perspective(400px) rotateX(-75deg)',
+          }}
+        />
+        {/* Floor */}
+        <div
+          className="w-[400%] h-[50%] absolute bottom-0 left-[-150%] origin-top"
+          style={{
+            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+            transform: 'perspective(400px) rotateX(75deg)',
+          }}
+        />
+      </div>
+    </div>
   );
 }

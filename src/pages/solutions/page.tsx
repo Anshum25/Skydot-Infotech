@@ -1,11 +1,8 @@
 import { PageHeader } from "@/components/layout/page-header";
-import { ContactCtaSection } from "@/components/sections/contact-cta-section";
+import { HomeFinalCtaSection } from "@/components/home/final-cta";
 import { Bot, Code2, Smartphone, Database, Users, Cloud, LineChart, Search, Layout, Globe, Mail, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
-
-
 
 export default function SolutionsPage() {
   const solutions = [
@@ -97,27 +94,27 @@ export default function SolutionsPage() {
         description="End-to-end engineering and digital services designed to modernize operations, scale infrastructure, and drive business efficiency."
       />
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="home-section relative py-24 md:py-32 bg-background border-t border-border">
+        <div className="container mx-auto px-6 md:px-12 max-w-7xl">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {solutions.map((sol, i) => (
-              <div key={i} className="border border-border rounded-2xl p-8 bg-card hover:border-primary/50 transition-colors group flex flex-col h-full">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6">
+              <Link key={i} to={`/solutions/${sol.slug}`} className="group flex flex-col p-7 md:p-9 bg-background hover:bg-secondary/40 transition-colors duration-300">
+                <div className="w-10 h-10 flex items-center justify-center text-[var(--skydot-blue)] mb-6 group-hover:scale-110 transition-transform">
                   <sol.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{sol.title}</h3>
-                <p className="text-muted-foreground mb-8 flex-1">{sol.description}</p>
-                <Link to={`/solutions/${sol.slug}`} className="inline-flex items-center text-sm font-semibold text-primary mt-auto">
-                  Explore {sol.title}
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
+                <h3 className="text-lg font-semibold tracking-tight text-foreground mb-3 group-hover:text-[var(--skydot-blue)] transition-colors">{sol.title}</h3>
+                <p className="text-sm text-muted-foreground mb-6 flex-1 leading-relaxed">{sol.description}</p>
+                <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-primary uppercase tracking-widest mt-auto pt-4 border-t border-border/50">
+                  Explore Solution
+                  <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <ContactCtaSection />
+      <HomeFinalCtaSection />
     </>
   );
 }

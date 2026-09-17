@@ -13,7 +13,7 @@ import {
 import { services } from "@/data/services";
 import { products } from "@/data/products";
 import { industries } from "@/data/industries";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const components = [
   { title: "About Us", href: "/about", description: "Learn about Skydot Infotech's mission, vision, and our experienced team." },
@@ -180,9 +180,6 @@ function ProductsDropdownContent() {
               </span>
               <h3 className="text-2xl font-bold tracking-tight text-foreground">{activeProduct.title}</h3>
             </div>
-            <MotionNavigationMenuLink as={Link} to={`/products/${activeProduct.slug}`} className="bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground text-xs font-semibold px-4 py-2 rounded-full transition-colors flex items-center gap-1.5 shrink-0">
-              Details <ArrowRight className="size-3" />
-            </MotionNavigationMenuLink>
           </div>
           
           <p className="text-muted-foreground text-sm mb-8 leading-relaxed line-clamp-3">
@@ -205,13 +202,18 @@ function ProductsDropdownContent() {
           </div>
           
           <div className="mt-8 pt-4 border-t border-border/50">
-            <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-xs text-muted-foreground mr-2 font-medium">Built for:</span>
-              {activeProduct.industries.map(ind => (
-                <span key={ind} className="text-[10px] uppercase font-bold tracking-wider bg-accent text-accent-foreground px-2 py-1 rounded-sm">
-                  {ind}
-                </span>
-              ))}
+            <div className="flex flex-wrap gap-4 items-center justify-between">
+              <div className="flex flex-wrap gap-2 items-center">
+                <span className="text-xs text-muted-foreground mr-2 font-medium">Built for:</span>
+                {activeProduct.industries.map(ind => (
+                  <span key={ind} className="text-[10px] uppercase font-bold tracking-wider bg-accent text-accent-foreground px-2 py-1 rounded-sm">
+                    {ind}
+                  </span>
+                ))}
+              </div>
+              <MotionNavigationMenuLink as={Link} to={`/products/${activeProduct.slug}`} className="bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium px-6 py-2.5 transition-colors flex items-center gap-2 shrink-0 group">
+                Explore Product <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </MotionNavigationMenuLink>
             </div>
           </div>
         </div>
