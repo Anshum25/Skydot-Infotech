@@ -186,34 +186,46 @@ function ProductsDropdownContent() {
             {activeProduct.description}
           </p>
           
-          <div className="flex-1">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
-              <div className="h-px w-6 bg-border"></div>
-              Core Features
-            </h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3">
-              {activeProduct.features.slice(0, 6).map((feature, idx) => (
-                <div key={idx} className="flex items-start gap-2.5">
-                  <div className="mt-1.5 size-1.5 rounded-full bg-primary shrink-0"></div>
-                  <span className="text-sm font-medium text-foreground/80 leading-tight">{feature}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mt-8 pt-4 border-t border-border/50">
-            <div className="flex flex-wrap gap-4 items-center justify-between">
-              <div className="flex flex-wrap gap-2 items-center">
-                <span className="text-xs text-muted-foreground mr-2 font-medium">Built for:</span>
-                {activeProduct.industries.map(ind => (
-                  <span key={ind} className="text-[10px] uppercase font-bold tracking-wider bg-accent text-accent-foreground px-2 py-1 rounded-sm">
-                    {ind}
-                  </span>
+          <div className="flex items-end justify-between mt-auto">
+            <div className="flex-1">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
+                <div className="h-px w-6 bg-border"></div>
+                Core Features
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3">
+                {activeProduct.features.slice(0, 6).map((feature, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5">
+                    <div className="mt-1.5 size-1.5 rounded-full bg-primary shrink-0"></div>
+                    <span className="text-sm font-medium text-foreground/80 leading-tight">{feature}</span>
+                  </div>
                 ))}
               </div>
-              <MotionNavigationMenuLink as={Link} to={`/products/${activeProduct.slug}`} className="bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium px-6 py-2.5 transition-colors flex items-center gap-2 shrink-0 group">
-                Explore Product <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </MotionNavigationMenuLink>
+            </div>
+
+            <MotionNavigationMenuLink 
+              as={Link} 
+              to={`/products/${activeProduct.slug}`} 
+              className="group relative w-44 overflow-hidden rounded-full bg-primary p-2.5 text-center font-medium text-primary-foreground transition-all flex flex-row items-center justify-center shrink-0 ml-4 mb-2 !border-none hover:shadow-lg focus:shadow-lg"
+            >
+              <span className="relative z-10 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0 text-sm">
+                Explore Product
+              </span>
+              <div className="absolute top-0 z-20 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
+                <span className="text-sm font-medium">Explore</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </div>
+              <div className="absolute left-[10%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-[var(--skydot-orange)] transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[2.5] z-0"></div>
+            </MotionNavigationMenuLink>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-border/50">
+            <div className="flex flex-wrap gap-2 items-center">
+              <span className="text-xs text-muted-foreground mr-2 font-medium">Built for:</span>
+              {activeProduct.industries.map(ind => (
+                <span key={ind} className="text-[10px] uppercase font-bold tracking-wider bg-accent text-accent-foreground px-2 py-1 rounded-sm">
+                  {ind}
+                </span>
+              ))}
             </div>
           </div>
         </div>
