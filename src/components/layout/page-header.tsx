@@ -4,9 +4,10 @@ interface PageHeaderProps {
   title: React.ReactNode;
   description?: string;
   eyebrow?: string;
+  children?: React.ReactNode;
 }
 
-export function PageHeader({ title, description, eyebrow }: PageHeaderProps) {
+export function PageHeader({ title, description, eyebrow, children }: PageHeaderProps) {
   return (
     <section className="relative min-h-[70vh] flex flex-col justify-center text-foreground overflow-hidden border-b border-border">
       <HeroBg />
@@ -35,6 +36,12 @@ export function PageHeader({ title, description, eyebrow }: PageHeaderProps) {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed font-normal">
               {description}
             </p>
+          )}
+
+          {children && (
+            <div className="flex flex-wrap items-center gap-3 mt-8 md:mt-10">
+              {children}
+            </div>
           )}
         </motion.div>
       </div>

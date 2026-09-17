@@ -13,13 +13,15 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
   "ai-automation": {
     title: "AI & Automation",
     description: "Practical artificial intelligence and automation services to streamline business workflows, improve data processing, and integrate intelligent capabilities.",
-    overview: "We deploy production-ready AI solutions designed to solve real business challenges. From intelligent routing systems to retrieval-augmented generation (RAG) over proprietary data, our AI & Automation practice focuses on measurable ROI and secure integration with your existing enterprise architecture.",
+    overview: "We deploy production-ready AI solutions designed to solve real business challenges. From intelligent routing systems to retrieval-augmented generation (RAG) over proprietary data, our AI & Automation practice focuses on measurable ROI and secure integration with your existing enterprise architecture. We also specialize in conversational AI, deploying next-generation Voice and Video Agents that redefine customer engagement and automate complex support workflows.",
     capabilities: [
+      { title: "Voice & Video Agents", description: "Deploy highly realistic, interactive AI avatars and voice agents for automated customer support, onboarding, and virtual assistance." },
       { title: "RAG Systems", description: "Securely leverage Large Language Models against your own proprietary business data." },
       { title: "Document Intelligence", description: "Automate data extraction from invoices, contracts, and unstructured forms." },
       { title: "AI Chatbots", description: "Context-aware conversational agents for support and internal knowledge retrieval." }
     ],
     benefits: [
+      { title: "Hyper-Personalized Engagement", description: "Video and voice agents provide a human-like touch, increasing customer satisfaction while lowering support costs." },
       { title: "Operational Efficiency", description: "Reduce manual processing time by automating repetitive data entry and routing tasks." },
       { title: "Data Security", description: "On-premise or private-cloud AI deployments ensuring your data never trains public models." }
     ],
@@ -28,7 +30,7 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
       { step: "Proof of Concept", description: "Developing a contained prototype to validate ROI and accuracy." },
       { step: "Enterprise Deployment", description: "Scaling the solution securely across your organization." }
     ],
-    technologies: ["Python", "TensorFlow", "LangChain", "OpenAI", "Vector Databases"],
+    technologies: ["Python", "TensorFlow", "LangChain", "OpenAI", "Vector Databases", "WebRTC", "TTS/STT Models"],
     faqs: [
       { question: "Is our data used to train public models?", answer: "No. We implement secure architectures (like Azure OpenAI or local LLMs) that guarantee your data remains private." },
       { question: "How long does a typical AI integration take?", answer: "A PoC typically takes 4-6 weeks, with full production deployment following in 2-3 months." }
@@ -78,6 +80,30 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
     technologies: ["Java", "Spring Boot", "SQL Server", "React"],
     faqs: [
       { question: "Can the ERP integrate with our legacy systems?", answer: "Yes, we build secure API bridges to ensure smooth data flow from legacy infrastructure." }
+    ]
+  },
+  "cloud-infrastructure": {
+    title: "Cloud & Infrastructure",
+    description: "Robust cloud hosting, email solutions, and domain management tailored for your business.",
+    overview: "We offer end-to-end cloud and infrastructure management, ensuring high availability, security, and performance. Whether you need reliable web hosting, professional email solutions, or domain procurement, our infrastructure services provide a solid foundation for your digital operations.",
+    capabilities: [
+      { title: "Gsuite & Workspace", description: "Setup, migration, and management of Google Workspace for enterprise-grade email and collaboration." },
+      { title: "cPanel Web Mail", description: "Cost-effective, reliable business email hosting with easy-to-use cPanel management." },
+      { title: "Domain Management", description: "Complete lifecycle management including domain procurement, DNS configuration, and automated renewals." }
+    ],
+    benefits: [
+      { title: "Reliability", description: "Ensure maximum uptime with our secure hosting environments." },
+      { title: "Brand Professionalism", description: "Custom business email addresses build trust with your clients." }
+    ],
+    process: [
+      { step: "Needs Assessment", description: "Evaluating your current infrastructure and email requirements." },
+      { step: "Migration & Setup", description: "Seamlessly transferring domains and emails with zero downtime." },
+      { step: "Ongoing Support", description: "Continuous monitoring and proactive renewal management." }
+    ],
+    technologies: ["Gsuite", "cPanel", "AWS", "DNS", "Linux"],
+    faqs: [
+      { question: "Do you handle domain transfers?", answer: "Yes, we manage the entire domain transfer process to ensure zero disruption." },
+      { question: "Can you migrate our existing emails to Gsuite?", answer: "Absolutely. We specialize in zero-data-loss email migrations to Google Workspace." }
     ]
   }
 };

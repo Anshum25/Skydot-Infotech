@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/layout/page-header";
 import { useParams } from "react-router-dom";
 import { getProductData } from "@/data/products-detailed";
 import { HomeFinalCtaSection } from "@/components/home/final-cta";
@@ -32,52 +33,34 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen">
       
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center text-foreground overflow-hidden">
-        <HeroBg />
-        
-        <div className="container relative z-10 mx-auto px-6 md:px-12 pt-40 pb-16">
-          <div className="mb-6 md:mb-8">
-            <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground">
-              <span className="w-4 h-px bg-[var(--skydot-orange)]" />
-              {product.category}
-            </span>
-          </div>
-
-          <div className="max-w-5xl">
-            <h1 className="home-headline text-[clamp(2.4rem,5.5vw,5.2rem)] font-light tracking-tight mb-5 md:mb-6 text-balance">
-              {product.title}
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed font-normal">
-              {product.overview}
-            </p>
-            
-            <div className="flex flex-wrap items-center gap-3 mt-8 md:mt-10">
-              <Link
-                to="/contact"
-                className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm bg-[var(--skydot-orange)] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:translate-x-0.5 active:scale-[0.98]"
-              >
-                <div className="absolute inset-0 bg-[#1677FF] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
-                <span className="relative z-10 flex items-center gap-2">
-                  Request a Demo
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Link>
-              <a
-                href="#capabilities"
-                className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm border border-border bg-background/60 px-6 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:border-[var(--skydot-orange)] active:scale-[0.98]"
-              >
-                <div className="absolute inset-0 bg-[var(--skydot-orange)] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
-                <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-                  Explore Features
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHeader 
+        eyebrow={product.category}
+        title={product.title}
+        description={product.overview}
+      >
+        <Link
+          to="/contact"
+          className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm bg-[var(--skydot-orange)] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:translate-x-0.5 active:scale-[0.98]"
+        >
+          <div className="absolute inset-0 bg-[#1677FF] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
+          <span className="relative z-10 flex items-center gap-2">
+            Request a Demo
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        </Link>
+        <a
+          href="#capabilities"
+          className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm border border-border bg-background/60 px-6 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:border-[var(--skydot-orange)] active:scale-[0.98]"
+        >
+          <div className="absolute inset-0 bg-[var(--skydot-orange)] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
+          <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+            Explore Features
+          </span>
+        </a>
+      </PageHeader>
 
       {/* 2. TRUST STRIP */}
       <section className="home-section py-16 bg-background border-t border-border">
@@ -240,36 +223,4 @@ export default function ProductDetail() {
   );
 }
 
-/* ─── 3D Grid Background ─────────────────────────── */
-function HeroBg() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none bg-background z-[-1]" aria-hidden>
-      <div
-        className="absolute inset-0 flex flex-col text-foreground opacity-[0.12] dark:opacity-[0.2]"
-        style={{
-          maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)'
-        }}
-      >
-        {/* Ceiling */}
-        <div
-          className="w-[400%] h-[50%] absolute top-0 left-[-150%] origin-bottom"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-            transform: 'perspective(400px) rotateX(-75deg)',
-          }}
-        />
-        {/* Floor */}
-        <div
-          className="w-[400%] h-[50%] absolute bottom-0 left-[-150%] origin-top"
-          style={{
-            backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-            transform: 'perspective(400px) rotateX(75deg)',
-          }}
-        />
-      </div>
-    </div>
-  );
-}
+

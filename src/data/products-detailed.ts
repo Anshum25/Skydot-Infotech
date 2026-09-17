@@ -11,28 +11,19 @@ export interface ProductDetailData {
 }
 
 export const detailedProducts: Record<string, ProductDetailData> = {
-  "irtpms": {
-    title: "IRTPMS",
-    category: "Infrastructure Management",
-    description: "Scale-level management system engineered for complex tracking and compliance.",
-    overview: "IRTPMS (Indian Railways Track Patrol Management System) is a comprehensive, enterprise-grade software platform designed to manage, monitor, and enforce compliance across large-scale physical infrastructures.",
-    problemSolved: "Managing geographically distributed assets and ensuring maintenance personnel adhere to strict compliance schedules is highly error-prone with manual systems. IRTPMS digitizes this entire workflow, ensuring accountability and real-time oversight.",
-    features: [
-      "Real-time GPS Tracking",
-      "Automated Compliance Reporting",
-      "Offline Sync Capabilities",
-      "Role-based Access Control",
-      "Dashboard Analytics"
-    ],
+  "itms": {
+    title: "ITMS",
+    category: "Management",
+    description: "Integrated Transport Management System for intelligent traffic routing.",
+    overview: "ITMS provides a comprehensive platform for managing transportation networks, optimizing routes, and analyzing traffic data in real-time.",
+    problemSolved: "Reduces congestion and improves fleet efficiency through advanced analytics and tracking.",
+    features: ["Real-time tracking", "Route optimization", "Analytics dashboard"],
     benefits: [
-      { title: "Operational Visibility", description: "Provides management with a real-time view of all ground-level operations." },
-      { title: "Compliance Assurance", description: "Automates the logging of mandatory checks to ensure regulatory compliance." }
+      { title: "Efficiency", description: "Improves overall fleet management." },
+      { title: "Data-Driven", description: "Real-time analytics for better decision making." }
     ],
-    targetUsers: ["Infrastructure Managers", "Safety Auditors", "Field Personnel"],
-    relatedSolutions: [
-      { title: "ERP Solutions", slug: "erp-solutions" },
-      { title: "Custom Software", slug: "software-development" }
-    ]
+    targetUsers: ["Transportation Agencies", "Fleet Operators"],
+    relatedSolutions: [{ title: "ERP Solutions", slug: "erp-enterprise" }]
   },
   "lms": {
     title: "LMS",
@@ -52,10 +43,63 @@ export const detailedProducts: Record<string, ProductDetailData> = {
       { title: "Actionable Insights", description: "Detailed analytics help identify struggling students early." }
     ],
     targetUsers: ["Universities", "Corporate Trainers", "EdTech Startups"],
-    relatedSolutions: [
-      { title: "Web Development", slug: "web-development" },
-      { title: "Mobile Applications", slug: "mobile-applications" }
-    ]
+    relatedSolutions: [{ title: "Web Development", slug: "web-software-development" }]
+  },
+  "cms": {
+    title: "CMS",
+    category: "Enterprise",
+    description: "Content Management System tailored for large-scale enterprise content delivery.",
+    overview: "A powerful CMS designed to handle vast amounts of content with role-based access control and media management.",
+    problemSolved: "Simplifies content publication workflows across large organizations.",
+    features: ["Role-based access", "Media management", "Workflow approvals"],
+    benefits: [
+      { title: "Scalability", description: "Handles high traffic and large media assets." },
+      { title: "Collaboration", description: "Streamlines editorial workflows." }
+    ],
+    targetUsers: ["Media Publishers", "Enterprise Marketing Teams"],
+    relatedSolutions: [{ title: "Web Development", slug: "web-software-development" }]
+  },
+  "pos": {
+    title: "POS (Point of Sale)",
+    category: "Retail",
+    description: "Advanced Point of Sale system integrating inventory, billing, and customer management.",
+    overview: "A unified POS system that brings together transactions, inventory management, and customer analytics in a single interface.",
+    problemSolved: "Eliminates the need for disjointed systems in retail environments.",
+    features: ["Inventory tracking", "Billing & Invoicing", "Sales analytics"],
+    benefits: [
+      { title: "Unified Operations", description: "All retail functions in one place." },
+      { title: "Customer Insights", description: "Track buying patterns and history." }
+    ],
+    targetUsers: ["Retailers", "Restaurants"],
+    relatedSolutions: [{ title: "ERP Solutions", slug: "erp-enterprise" }]
+  },
+  "moodle": {
+    title: "MOODLE",
+    category: "Education",
+    description: "Customized Moodle deployment for scalable and highly interactive e-learning platforms.",
+    overview: "We deploy and customize Moodle to create branded, high-performance learning environments.",
+    problemSolved: "Provides a reliable, open-source based learning platform tailored to specific institutional needs.",
+    features: ["Custom themes", "Plugin integration", "Scalable hosting"],
+    benefits: [
+      { title: "Cost-Effective", description: "Leverages open-source technology." },
+      { title: "Highly Customizable", description: "Can be tailored to any educational workflow." }
+    ],
+    targetUsers: ["Schools", "Universities", "Corporate Training"],
+    relatedSolutions: [{ title: "Cloud & Infrastructure", slug: "cloud-infrastructure" }]
+  },
+  "mcx-apis": {
+    title: "MCX APIs",
+    category: "Finance",
+    description: "High-performance APIs for integrating MCX commodity trading and market data.",
+    overview: "Reliable and fast APIs to access real-time MCX market data, enabling automated trading and analytics.",
+    problemSolved: "Provides low-latency access to critical financial data.",
+    features: ["Real-time data", "Low latency", "Secure endpoints"],
+    benefits: [
+      { title: "Speed", description: "Ultra-fast data delivery." },
+      { title: "Reliability", description: "High uptime for mission-critical trading." }
+    ],
+    targetUsers: ["Traders", "Financial Institutions"],
+    relatedSolutions: [{ title: "Web Development", slug: "web-software-development" }]
   }
 };
 

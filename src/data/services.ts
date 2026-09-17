@@ -1,4 +1,4 @@
-import { LucideIcon, BrainCircuit, Code, Smartphone, Database, Cloud, LineChart } from "lucide-react";
+import { LucideIcon, BrainCircuit, Code, Smartphone, Database, Cloud, Layers, BookOpen } from "lucide-react";
 
 export interface Service {
   title: string;
@@ -112,22 +112,41 @@ export const services: Service[] = [
     verified: true,
   },
   {
-    title: "Digital Growth",
-    slug: "digital-growth",
-    category: "Marketing",
-    shortDescription: "Data-driven SEO, digital marketing, and bulk SMS solutions.",
-    description: "Accelerate your digital presence and reach your target audience effectively. Our digital growth strategies combine SEO, content marketing, and direct outreach to maximize ROI.",
-    icon: LineChart,
+    title: "Frappe Services",
+    slug: "frappe-services",
+    category: "Development",
+    shortDescription: "Custom ERPNext and Frappe framework development.",
+    description: "End-to-end bespoke ERP solutions built on the open-source Frappe framework. We design modules specifically for your operational realities.",
+    icon: Layers,
     features: [
-      "SEO",
-      "Digital Marketing",
-      "Content Management",
-      "Bulk SMS",
-      "Analytics & Reporting",
-      "Conversion Optimization"
+      "Custom Frappe Apps",
+      "ERPNext Implementation",
+      "Module Development",
+      "API Integrations",
+      "Workflow Customization",
+      "Migration Services"
     ],
-    industries: ["E-Commerce", "Real Estate", "Education", "Retail"],
-    technologies: ["Google Analytics", "SEMrush", "Meta Ads", "Mailchimp"],
+    industries: ["Manufacturing", "Retail", "Services", "Education"],
+    technologies: ["Python", "Frappe", "MariaDB", "ERPNext"],
+    verified: true,
+  },
+  {
+    title: "Moodle Services",
+    slug: "moodle-services",
+    category: "Education",
+    shortDescription: "Expert Moodle deployment, customization, and hosting.",
+    description: "Create powerful online learning environments with our Moodle services. We offer theme customization, plugin development, and scalable hosting.",
+    icon: BookOpen,
+    features: [
+      "Moodle Deployment",
+      "Theme Customization",
+      "Plugin Development",
+      "LMS Integration",
+      "Performance Tuning",
+      "Managed Hosting"
+    ],
+    industries: ["Education", "Corporate Training", "Universities", "EdTech"],
+    technologies: ["PHP", "Moodle", "MySQL", "Linux"],
     verified: true,
   }
 ];
