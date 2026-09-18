@@ -15,7 +15,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   "national-railway-infrastructure": {
     title: "Digitizing National Railway Infrastructure Tracking",
     slug: "national-railway-infrastructure",
-    client: "[VERIFY CONTENT] Indian Railways",
+    client: "Indian Railways",
     industry: "Government & Railways",
     summary: "A comprehensive digital transformation of track patrolling, replacing manual logs with a real-time GPS-enabled tracking system.",
     challenge: "Managing thousands of kilometers of track requires rigorous daily inspections. The legacy paper-based system resulted in delayed reporting, lack of accountability, and vulnerability to human error.",
@@ -30,7 +30,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   "enterprise-erp-manufacturing": {
     title: "Unifying Operations for Large-Scale Manufacturing",
     slug: "enterprise-erp-manufacturing",
-    client: "[VERIFY CONTENT] Leading Manufacturing Firm",
+    client: "Leading Manufacturing Firm",
     industry: "Manufacturing",
     summary: "Deployment of a modular ERP system connecting the shop floor to the finance department.",
     challenge: "The client was operating on fragmented legacy systems. Inventory data rarely matched financial records, leading to costly production delays and procurement inefficiencies.",
@@ -45,7 +45,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   "ai-inventory-optimization": {
     title: "Predictive AI for Inventory Optimization",
     slug: "ai-inventory-optimization",
-    client: "[VERIFY CONTENT] Global Retail Chain",
+    client: "Global Retail Chain",
     industry: "Retail & E-commerce",
     summary: "Implemented a machine learning model to predict localized demand and optimize warehouse stock levels.",
     challenge: "The client faced millions in lost revenue due to localized stockouts of high-demand items, while simultaneously overstocking low-demand goods.",
@@ -60,7 +60,7 @@ export const caseStudies: Record<string, CaseStudy> = {
   "fintech-mobile-banking": {
     title: "Next-Generation Mobile Banking Experience",
     slug: "fintech-mobile-banking",
-    client: "[VERIFY CONTENT] Regional Bank",
+    client: "Regional Bank",
     industry: "Financial Services",
     summary: "Redesigned and rebuilt a legacy banking application into a modern, secure, and highly responsive mobile experience.",
     challenge: "A disjointed user experience and slow load times were causing a drop in mobile engagement and an increase in customer support tickets.",

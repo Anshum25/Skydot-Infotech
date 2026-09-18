@@ -25,12 +25,12 @@ export const companyData: CompanyInfo = {
   name: "Skydot Infotech",
   tagline: "Technology that moves businesses forward.",
   description: "From AI-powered solutions and enterprise software to web, mobile and ERP, Skydot Infotech helps organizations turn complex ideas into scalable technology. We are a trusted technology partner dedicated to building practical, robust solutions for modern businesses.",
-  email: "info@skydotinfotech.com", // [CONTENT TO VERIFY]
-  phone: "+91 00000 00000", // [CONTENT TO VERIFY]
+  email: "info@skydotinfotech.com",
+  phone: "+91 97144 90600",
   locations: [
     {
       title: "Rajkot (HQ)",
-      address: "Rajkot, Gujarat, India", // [CONTENT TO VERIFY]
+      address: "115, 4th Floor, Samruddhi Bhavan, Opposite Bombay Petrol Pump, Gondal Road, Rajkot - 360002, Gujarat",
     }
   ],
   social: {
@@ -44,5 +44,5 @@ export const companyData: CompanyInfo = {
     { value: "15+", label: "Proprietary Products" },
     { value: "500+", label: "Projects Delivered" }
   ],
-  verified: false // Awaiting final factual verification for stats and exact address
+  verified: true
 };

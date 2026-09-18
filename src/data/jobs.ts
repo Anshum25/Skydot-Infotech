@@ -30,7 +30,7 @@ export const jobs: Job[] = [
       "Knowledge of multiple front-end languages and libraries (e.g. HTML/ CSS, JavaScript, XML, jQuery).",
       "Excellent communication and teamwork skills."
     ],
-    verified: false // Placeholder until active job listings are provided
+    verified: true
   },
   {
     title: "Mobile App Developer (React Native)",
@@ -50,6 +50,27 @@ export const jobs: Job[] = [
       "Ability to write well-documented, clean Javascript code.",
       "Familiarity with native build tools, like XCode, Gradle."
     ],
-    verified: false
+    verified: true
+  },
+  {
+    title: "ERPNext/Frappe Developer",
+    slug: "erpnext-frappe-developer",
+    experience: "1-3 Years",
+    location: "Rajkot, Gujarat (On-site)",
+    type: "Full-time",
+    skills: ["Python", "Frappe Framework", "MariaDB", "JavaScript", "ERPNext"],
+    responsibilities: [
+      "Develop custom applications and modules using the Frappe framework.",
+      "Integrate ERPNext with third-party applications via APIs.",
+      "Customize and optimize existing ERP systems based on client requirements.",
+      "Provide technical support and bug fixes for Frappe deployments."
+    ],
+    requirements: [
+      "Strong proficiency in Python and JavaScript.",
+      "Hands-on experience with the Frappe Framework and ERPNext.",
+      "Knowledge of database management (MariaDB/MySQL).",
+      "Problem-solving mindset and ability to work independently."
+    ],
+    verified: true
   }
 ];
