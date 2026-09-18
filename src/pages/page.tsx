@@ -9,6 +9,7 @@ import { HomeWorkSection } from "@/components/home/work-section";
 import { HomeProcessSection } from "@/components/home/process-section";
 import { HomeTestimonialsSection } from "@/components/home/testimonials-section";
 import { HomeFinalCtaSection } from "@/components/home/final-cta";
+import { ParentCompanySection } from "@/components/home/parent-company-section";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <HomeWorkSection />
       <HomeServicesSection />
       <HomeProcessSection />
+      <ParentCompanySection />
       <HomeTestimonialsSection />
       <HomeFinalCtaSection />
     </>

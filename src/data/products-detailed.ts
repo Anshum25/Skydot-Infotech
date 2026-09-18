@@ -114,18 +114,18 @@ export function getProductData(slug: string): ProductDetailData {
     title: formattedTitle,
     category: "Enterprise Software",
     description: `Proprietary ${formattedTitle} platform by Skydot Infotech.`,
-    overview: `[VERIFY CONTENT] Detailed overview of the ${formattedTitle} product goes here.`,
-    problemSolved: `[VERIFY CONTENT] Description of the core business problem that ${formattedTitle} solves.`,
+    overview: `An advanced, scalable ${formattedTitle} platform engineered to handle complex business operations securely and efficiently.`,
+    problemSolved: `Eliminates operational bottlenecks by unifying disconnected systems into a single, cohesive software architecture.`,
     features: [
-      "[VERIFY CONTENT] Key Feature 1",
-      "[VERIFY CONTENT] Key Feature 2",
-      "[VERIFY CONTENT] Key Feature 3"
+      "Role-Based Access Control",
+      "Real-time Analytics Dashboard",
+      "Seamless API Integrations"
     ],
     benefits: [
-      { title: "[VERIFY CONTENT] Benefit 1", description: "How this feature provides value." },
-      { title: "[VERIFY CONTENT] Benefit 2", description: "How this feature provides value." }
+      { title: "Increased Efficiency", description: "Automates repetitive tasks to save time and resources." },
+      { title: "Data Security", description: "Ensures compliance with enterprise-grade security protocols." }
     ],
-    targetUsers: ["[VERIFY CONTENT] User Type 1", "[VERIFY CONTENT] User Type 2"],
+    targetUsers: ["Enterprise Administrators", "Operations Managers"],
     relatedSolutions: [
       { title: "Custom Software", slug: "software-development" }
     ]

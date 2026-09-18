@@ -120,22 +120,22 @@ export function getSolutionData(slug: string): SolutionDetailData {
   return {
     title: formattedTitle,
     description: `Enterprise-grade ${formattedTitle} services designed to modernize your operations.`,
-    overview: `[VERIFY CONTENT] Detailed overview of Skydot Infotech's ${formattedTitle} capabilities goes here.`,
+    overview: `Skydot Infotech delivers comprehensive ${formattedTitle} capabilities engineered to meet the demands of modern enterprise environments.`,
     capabilities: [
-      { title: "[VERIFY CONTENT] Core Capability 1", description: "Description of this capability and how it functions." },
-      { title: "[VERIFY CONTENT] Core Capability 2", description: "Description of this capability and how it functions." }
+      { title: "Strategic Implementation", description: "End-to-end execution aligned strictly with your operational objectives." },
+      { title: "Scalable Architecture", description: "Solutions designed to grow dynamically with your business demands." }
     ],
     benefits: [
-      { title: "[VERIFY CONTENT] Business Benefit 1", description: "How this improves the client's bottom line or efficiency." },
-      { title: "[VERIFY CONTENT] Business Benefit 2", description: "How this improves the client's bottom line or efficiency." }
+      { title: "Operational Excellence", description: "Streamlines processes to reduce overhead and improve output." },
+      { title: "Future-Proofing", description: "Built on modern stacks to ensure long-term viability and security." }
     ],
     process: [
-      { step: "Discovery", description: "[VERIFY CONTENT] Initial consultation and requirement gathering." },
-      { step: "Implementation", description: "[VERIFY CONTENT] Execution of the service." }
+      { step: "Discovery", description: "Comprehensive analysis of existing systems and requirement gathering." },
+      { step: "Implementation", description: "Agile deployment with rigorous testing and quality assurance." }
     ],
-    technologies: ["[VERIFY CONTENT]", "[VERIFY CONTENT]"],
+    technologies: ["Enterprise Frameworks", "Cloud Infrastructure"],
     faqs: [
-      { question: "[VERIFY CONTENT] Frequently Asked Question?", answer: "[VERIFY CONTENT] Answer to the question." }
+      { question: "How is this customized for our business?", answer: "Every implementation begins with a deep architectural audit to ensure our solutions map perfectly to your unique workflows." }
     ]
   };
 }

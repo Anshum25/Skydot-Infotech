@@ -141,9 +141,14 @@ export function Footer() {
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-6 border-t border-border text-[11px] font-medium uppercase tracking-widest text-muted-foreground relative">
-              <p>
-                © {currentYear} {companyData.name}.
-              </p>
+              <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
+                <p>
+                  © {currentYear} {companyData.name}.
+                </p>
+                <p className="text-[10px] opacity-70 normal-case tracking-normal">
+                  Skydot is a technology brand of <a href="https://www.nivasync.in" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors underline decoration-border underline-offset-2">NivaSync Infotech Pvt. Ltd.</a>
+                </p>
+              </div>
 
               <button
                 type="button"

@@ -68,13 +68,13 @@ export function getIndustryData(slug: string): IndustryDetailData {
     title: formattedTitle,
     description: `Enterprise technology solutions tailored for the ${formattedTitle} industry.`,
     challenges: [
-      { title: "[VERIFY CONTENT] Operational Challenge", description: "A core issue faced by companies in this sector." },
-      { title: "[VERIFY CONTENT] Technical Challenge", description: "A system or architectural hurdle." }
+      { title: "Legacy System Bottlenecks", description: "Outdated infrastructure hindering scalability and operational agility." },
+      { title: "Data Fragmentation", description: "Disconnected systems preventing unified business intelligence and reporting." }
     ],
-    howWeHelp: `[VERIFY CONTENT] Detailed explanation of how Skydot Infotech solves the specific problems of the ${formattedTitle} industry using modern technology.`,
+    howWeHelp: `Skydot Infotech engineers tailored enterprise software, scalable ERP implementations, and intelligent automation specifically designed for the ${formattedTitle} sector. We bridge the gap between complex operations and seamless digital experiences.`,
     workflows: [
-      { step: "[VERIFY CONTENT] Workflow 1", description: "How a specific process is digitized." },
-      { step: "[VERIFY CONTENT] Workflow 2", description: "How a specific process is digitized." }
+      { step: "Process Digitization", description: "Transforming manual, paper-based operations into streamlined digital workflows." },
+      { step: "System Integration", description: "Unifying disparate enterprise data sources into a single, reliable source of truth." }
     ],
     relevantSolutions: [
       { title: "ERP Solutions", slug: "erp-solutions" },

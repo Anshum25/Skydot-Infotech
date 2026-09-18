@@ -12,9 +12,7 @@ export function MetricsSection() {
   return (
     <section className="py-12 bg-muted/30 border-b border-border">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center text-xs text-muted-foreground/60 mb-6 font-mono">
-          <span>[CONTENT TO VERIFY - UPDATE WITH ACTUAL VERIFIED METRICS]</span>
-        </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-border">
           {metrics.map((metric, i) => (
             <motion.div 

@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 export default function CareersPage() {
   const positions = [
-    { title: "Senior Full-Stack Engineer", icon: Code, location: "[VERIFY CONTENT]" },
-    { title: "Mobile Application Developer", icon: Laptop, location: "[VERIFY CONTENT]" },
-    { title: "ERP Implementation Specialist", icon: Database, location: "[VERIFY CONTENT]" },
-    { title: "Digital Marketing Executive", icon: LineChart, location: "[VERIFY CONTENT]" },
+    { title: "Senior Full-Stack Engineer", icon: Code, location: "Rajkot, Gujarat (Hybrid)" },
+    { title: "Mobile Application Developer", icon: Laptop, location: "Rajkot, Gujarat (Hybrid)" },
+    { title: "ERP Implementation Specialist", icon: Database, location: "Rajkot, Gujarat (On-site)" },
+    { title: "Digital Marketing Executive", icon: LineChart, location: "Rajkot, Gujarat (Hybrid)" },
   ];
 
   return (
@@ -81,7 +81,7 @@ export default function CareersPage() {
           
           <div className="mt-16 border-t border-border pt-12 flex flex-col items-center text-center">
             <p className="text-sm text-muted-foreground uppercase tracking-widest mb-4">Don't see a role that fits? We are always looking for great talent.</p>
-            <Link to="mailto:[VERIFY EMAIL]" className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[var(--skydot-orange)] uppercase tracking-widest group">
+            <Link to="mailto:hr@skydotinfotech.com" className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[var(--skydot-orange)] uppercase tracking-widest group">
               Send us your resume <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

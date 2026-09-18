@@ -101,6 +101,29 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Built by NivaSync */}
+      <section className="home-section relative py-24 md:py-32 bg-secondary/10 dark:bg-card/10 border-t border-border">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-4xl">
+            <p className="home-label mb-5">Built by NivaSync</p>
+            <h2 className="text-2xl md:text-3xl font-light leading-relaxed text-muted-foreground">
+              Skydot brings NivaSync's technology capabilities to businesses through a focused digital engineering and software brand.
+            </h2>
+            <div className="mt-8">
+              <a 
+                href="https://www.nivasync.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-medium text-[var(--skydot-blue)] hover:opacity-80 transition-opacity group"
+              >
+                Visit NivaSync Infotech Pvt. Ltd.
+                <span className="inline-block transition-transform group-hover:translate-x-1 ml-1">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <HomeFinalCtaSection />
     </>
   );

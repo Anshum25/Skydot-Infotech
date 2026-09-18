@@ -13,7 +13,7 @@ export const insights: Record<string, Insight> = {
   "future-of-erp-in-manufacturing": {
     title: "The Future of ERP in Manufacturing",
     slug: "future-of-erp-in-manufacturing",
-    author: "[VERIFY CONTENT] Engineering Team",
+    author: "Skydot Engineering Team",
     date: "August 24, 2026",
     category: "Enterprise Software",
     summary: "How modular ERP systems are replacing monolithic architectures in the modern manufacturing sector.",
@@ -23,7 +23,7 @@ export const insights: Record<string, Insight> = {
   "ai-in-document-processing": {
     title: "Automating Compliance with AI Document Processing",
     slug: "ai-in-document-processing",
-    author: "[VERIFY CONTENT] Skydot AI Lab",
+    author: "Skydot AI Research Lab",
     date: "August 15, 2026",
     category: "Artificial Intelligence",
     summary: "Leveraging OCR and Large Language Models to automate data extraction from unstructured forms.",

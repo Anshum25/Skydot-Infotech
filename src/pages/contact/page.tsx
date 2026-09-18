@@ -41,7 +41,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Headquarters</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      [VERIFY CONTENT]<br/>
+                      Gondal Road<br/>
                       Rajkot, Gujarat, India
                     </p>
                   </div>
@@ -54,8 +54,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Phone</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      [VERIFY CONTENT]<br/>
-                      Support Hours: [VERIFY CONTENT]
+                      +91 8000 800 500<br/>
+                      Support Hours: Mon-Fri, 9:00 AM - 6:00 PM (IST)
                     </p>
                   </div>
                 </div>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Email</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
                       General: info@skydotinfotech.com<br/>
-                      Sales: [VERIFY CONTENT]
+                      Sales: sales@skydotinfotech.com
                     </p>
                   </div>
                 </div>
