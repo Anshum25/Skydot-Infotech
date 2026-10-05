@@ -12,6 +12,28 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    title: "Sky ERP",
+    slug: "sky-erp",
+    category: "Enterprise",
+    description: "An integrated enterprise platform powered by ERPNext for managing operations across finance, HR, manufacturing, and more.",
+    features: ["Accounting & Finance", "HR & Payroll", "Manufacturing", "Inventory Management", "CRM"],
+    screenshots: [],
+    industries: ["Manufacturing", "Retail & E-commerce", "Healthcare", "Education", "Distribution"],
+    technologies: ["Frappe", "Python", "MariaDB", "Redis"],
+    verified: true
+  },
+  {
+    title: "Frappe Custom Apps",
+    slug: "frappe-apps",
+    category: "Enterprise",
+    description: "Custom-built applications on the Frappe framework, tailored precisely to your unique business workflows.",
+    features: ["Rapid Development", "Seamless ERP Integration", "Open Source", "Custom Workflows"],
+    screenshots: [],
+    industries: ["Enterprise", "Logistics", "IT Sector", "Agriculture"],
+    technologies: ["Frappe", "Python", "MariaDB"],
+    verified: true
+  },
+  {
     title: "ITMS",
     slug: "itms",
     category: "Management",

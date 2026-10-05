@@ -3,6 +3,7 @@ import { HomeFinalCtaSection } from "@/components/home/final-cta";
 import { getSolutionData } from "@/data/solutions-detailed";
 import { CheckCircle2, ChevronRight, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 export default function SolutionDetail() {
@@ -10,6 +11,21 @@ export default function SolutionDetail() {
   const slug = params.slug || "";
 
   const solution = getSolutionData(slug);
+
+  useEffect(() => {
+    if (solution) {
+      document.title = `${solution.title} | Skydot Infotech`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", solution.description);
+      } else {
+        const meta = document.createElement('meta');
+        meta.name = "description";
+        meta.content = solution.description;
+        document.head.appendChild(meta);
+      }
+    }
+  }, [solution]);
 
   return (
     <>

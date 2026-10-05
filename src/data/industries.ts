@@ -11,12 +11,112 @@ export interface Industry {
 
 export const industries: Industry[] = [
   {
+    name: "Manufacturing",
+    slug: "manufacturing",
+    description: "End-to-end ERP operations covering BOM, production planning, quality control, and shop floor management.",
+    challenges: ["Equipment downtime", "Supply chain visibility", "Inventory and scrap management"],
+    solutions: ["ERP Solutions", "ERPNext Implementation", "Frappe Development"],
+    products: ["Sky ERP", "Frappe Custom Apps"],
+    iconName: "Factory",
+    verified: true
+  },
+  {
+    name: "Distribution & Trading",
+    slug: "distribution",
+    description: "Streamlined multi-branch logistics, inventory tracking, and warehouse operations.",
+    challenges: ["Multi-warehouse management", "Route planning", "Stock reconciliation"],
+    solutions: ["ERP Solutions", "Business Automation"],
+    products: ["Sky ERP"],
+    iconName: "Truck",
+    verified: true
+  },
+  {
+    name: "Healthcare",
+    slug: "healthcare",
+    description: "Integrated clinical and administrative operations, patient management, and billing.",
+    challenges: ["Patient data management", "Compliance", "Resource scheduling"],
+    solutions: ["Web Development", "Custom Application Development"],
+    products: ["Sky ERP", "Frappe Custom Apps"],
+    iconName: "Activity",
+    verified: true
+  },
+  {
+    name: "Retail & E-commerce",
+    slug: "retail",
+    description: "Robust omnichannel operating systems bridging in-store POS and online storefronts.",
+    challenges: ["Omnichannel experience", "Payment processing", "Customer retention"],
+    solutions: ["Web Development", "Mobile Application Development", "ERP Solutions"],
+    products: ["Sky ERP", "POS"],
+    iconName: "ShoppingCart",
+    verified: true
+  },
+  {
+    name: "Education",
+    slug: "education",
+    description: "Comprehensive Campus OS, learning management, and student lifecycle administration.",
+    challenges: ["Remote learning facilitation", "Student performance tracking", "Administrative overhead"],
+    solutions: ["Web Development", "Mobile Application Development"],
+    products: ["LMS", "MOODLE", "Sky ERP"],
+    iconName: "GraduationCap",
+    verified: true
+  },
+  {
+    name: "Real Estate",
+    slug: "real-estate",
+    description: "Project management and broker CRMs designed specifically for real estate developers and agencies.",
+    challenges: ["Lead management", "Project lifecycle tracking", "Broker commissions"],
+    solutions: ["Software Development", "Digital Marketing"],
+    products: ["Sky ERP", "Frappe Custom Apps"],
+    iconName: "Building2",
+    verified: true
+  },
+  {
+    name: "Textile & Garments",
+    slug: "textile",
+    description: "Style to season tracking, batch management, and precise manufacturing controls for apparel.",
+    challenges: ["Variant management", "Seasonal demand forecasting", "Supply chain tracking"],
+    solutions: ["ERP Solutions", "Business Automation"],
+    products: ["Sky ERP"],
+    iconName: "Scissors",
+    verified: true
+  },
+  {
+    name: "Dairy & FMCG",
+    slug: "fmcg",
+    description: "Batch control, FEFO (First Expired, First Out) management, and fast-moving inventory tracking.",
+    challenges: ["Perishable goods tracking", "Quality compliance", "Fast distribution cycles"],
+    solutions: ["ERP Solutions"],
+    products: ["Sky ERP"],
+    iconName: "Package",
+    verified: true
+  },
+  {
+    name: "NBFC & Finance",
+    slug: "finance",
+    description: "Compliance tracking, loan management, and highly secure financial reporting solutions.",
+    challenges: ["Regulatory compliance", "Loan lifecycle management", "Data security"],
+    solutions: ["Custom Application Development", "ERP Solutions"],
+    products: ["Sky ERP", "MCX APIs"],
+    iconName: "Landmark",
+    verified: true
+  },
+  {
+    name: "Logistics",
+    slug: "logistics",
+    description: "Fleet management and Transport Management Systems (TMS) for global and local supply chains.",
+    challenges: ["Route optimization", "Fleet maintenance", "Real-time tracking"],
+    solutions: ["Software Development", "ERP Solutions"],
+    products: ["Sky ERP", "ITMS"],
+    iconName: "Globe",
+    verified: true
+  },
+  {
     name: "Government",
     slug: "government",
     description: "Secure, scalable, and compliant software solutions for public sector organizations and government bodies.",
     challenges: ["Data security and compliance", "Legacy system integration", "Public service delivery efficiency"],
-    solutions: ["Custom Software Development", "Cloud & Infrastructure", "ERP Solutions"],
-    products: ["IRTPMS", "Gujpe"],
+    solutions: ["Custom Software Development", "Web Hosting", "ERP Solutions"],
+    products: ["Sky ERP"],
     iconName: "Landmark",
     verified: true
   },
@@ -25,49 +125,9 @@ export const industries: Industry[] = [
     slug: "railways",
     description: "Specialized monitoring and management systems designed specifically for railway operations and training.",
     challenges: ["Safety monitoring", "Large scale personnel training", "Real-time data processing"],
-    solutions: ["Custom Software Development", "AI & Automation"],
-    products: ["IRTPMS", "IRIMEE", "IRISET"],
+    solutions: ["Software Development", "Web Development"],
+    products: ["ITMS"],
     iconName: "TrainTrack",
-    verified: true
-  },
-  {
-    name: "Education",
-    slug: "education",
-    description: "Comprehensive digital platforms and learning management systems for schools, colleges, and training institutes.",
-    challenges: ["Remote learning facilitation", "Student performance tracking", "Administrative overhead"],
-    solutions: ["Web & Software", "Mobile Development"],
-    products: ["LMS", "Online Examination System", "OMR Software"],
-    iconName: "GraduationCap",
-    verified: true
-  },
-  {
-    name: "Manufacturing",
-    slug: "manufacturing",
-    description: "End-to-end ERP and efficiency tracking systems to optimize the manufacturing lifecycle and supply chain.",
-    challenges: ["Equipment downtime", "Supply chain visibility", "Inventory management"],
-    solutions: ["ERP Solutions", "AI & Automation", "Cloud & Infrastructure"],
-    products: ["Skydot ERP", "TPMIS"],
-    iconName: "Factory",
-    verified: true
-  },
-  {
-    name: "Real Estate",
-    slug: "real-estate",
-    description: "Dynamic property portals and CRM solutions for real estate agents, brokers, and property managers.",
-    challenges: ["Lead management", "Property showcasing", "Client communication"],
-    solutions: ["Web & Software", "Digital Growth"],
-    products: ["Real Estate Portal", "Member Directory"],
-    iconName: "Building2",
-    verified: true
-  },
-  {
-    name: "Retail & E-Commerce",
-    slug: "retail",
-    description: "Robust e-commerce platforms and retail management software to drive sales and customer engagement.",
-    challenges: ["Omnichannel experience", "Payment processing", "Customer retention"],
-    solutions: ["Web & Software", "Mobile Development", "Digital Growth"],
-    products: ["E-Commerce / Shopping Cart", "Gujpe"],
-    iconName: "ShoppingCart",
     verified: true
   }
 ];

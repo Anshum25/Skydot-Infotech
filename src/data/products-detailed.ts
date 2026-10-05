@@ -11,6 +11,47 @@ export interface ProductDetailData {
 }
 
 export const detailedProducts: Record<string, ProductDetailData> = {
+  "sky-erp": {
+    title: "Sky ERP",
+    category: "Enterprise",
+    description: "An integrated enterprise platform powered by ERPNext for managing operations across finance, HR, manufacturing, and more.",
+    overview: "Sky ERP is our flagship pre-configured ERPNext product built for global SMEs. It provides a unified view of your entire operation in real-time. It is tax-ready, industry-specific, and deployable in weeks, eliminating the cost of chaos with the power of clarity.",
+    problemSolved: "Replaces disconnected systems, manual Excel reports, and slow decisions with one unified platform, automated workflows, and real-time dashboards.",
+    features: [
+      "Financial Control (GST, Banking, Multi-currency)",
+      "HR & Payroll (Attendance, Appraisals, Self-Service)",
+      "Manufacturing Operations (BOM, Work Orders, Quality)",
+      "CRM & Sales (Lead Capture, Quotes, Campaigns)",
+      "Distribution & Logistics (Multi-warehouse, Trips)"
+    ],
+    benefits: [
+      { title: "One Platform", description: "Seamless operations across departments without duplicating data." },
+      { title: "Real-Time Reports", description: "Live dashboards and automated reporting for faster decision-making." },
+      { title: "Sky AI Copilot", description: "Chat with your ERP to get answers, run reports, and automate tasks instantly." }
+    ],
+    targetUsers: ["SMEs", "Manufacturing Plants", "Distribution Centers", "Enterprise Administrators"],
+    relatedSolutions: [{ title: "ERPNext Implementation", slug: "erpnext-implementation" }]
+  },
+  "frappe-apps": {
+    title: "Frappe Custom Apps",
+    category: "Enterprise",
+    description: "Custom-built applications on the Frappe framework, tailored precisely to your unique business workflows.",
+    overview: "We leverage the world's best 100% open-source ERP framework to build tailored solutions. From customizing a single workflow to building an entire application from scratch, we handle it all with our Frappe-first team.",
+    problemSolved: "Off-the-shelf software often fails to meet unique operational needs. Custom Frappe apps bridge these gaps efficiently without licensing fees.",
+    features: [
+      "100% Open Source Architecture",
+      "Seamless ERPNext Integration",
+      "Custom Workflow Automation",
+      "No Licensing Fees per User",
+      "Rapid Development & Deployment"
+    ],
+    benefits: [
+      { title: "No Vendor Lock-in", description: "You own your data and the customized framework." },
+      { title: "Highly Customizable", description: "Adapt the software to your exact business needs instead of the other way around." }
+    ],
+    targetUsers: ["Growing Enterprises", "Process-heavy Operations", "Organizations scaling rapidly"],
+    relatedSolutions: [{ title: "Frappe Customization", slug: "frappe-customization" }]
+  },
   "itms": {
     title: "ITMS",
     category: "Management",

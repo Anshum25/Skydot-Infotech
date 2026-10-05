@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export function LocationMap() {
   return (
-    <div className="relative w-full max-w-[320px] mt-4 mb-5 bg-transparent">
+    <div className="relative w-full max-w-[600px] mt-4 mb-5 bg-transparent lg:scale-110 lg:origin-left">
       {/* Map image */}
       <img
         src="/world.svg"

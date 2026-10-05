@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Static Routes -->
+  <url><loc>https://www.skydotinfotech.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.skydotinfotech.com/about</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/contact</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/work</loc><priority>0.9</priority></url>
+  <url><loc>https://www.skydotinfotech.com/insights</loc><priority>0.7</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions</loc><priority>0.9</priority></url>
+  <url><loc>https://www.skydotinfotech.com/products</loc><priority>0.9</priority></url>
+  <url><loc>https://www.skydotinfotech.com/industries</loc><priority>0.8</priority></url>
+
+  <!-- Work (Case Studies) -->
+  <url><loc>https://www.skydotinfotech.com/work/national-railway-infrastructure</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/work/enterprise-erp-manufacturing</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/work/ai-inventory-optimization</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/work/fintech-mobile-banking</loc><priority>0.8</priority></url>
+
+  <!-- Products -->
+  <url><loc>https://www.skydotinfotech.com/products/itms</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/products/lms</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/products/cms</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/products/pos</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/products/moodle</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/products/mcx-apis</loc><priority>0.8</priority></url>
+
+  <!-- Solutions -->
+  <url><loc>https://www.skydotinfotech.com/solutions/ai-automation</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions/web-software-development</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions/mobile-development</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions/erp-enterprise</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions/cloud-infrastructure</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions/frappe-services</loc><priority>0.8</priority></url>
+  <url><loc>https://www.skydotinfotech.com/solutions/moodle-services</loc><priority>0.8</priority></url>
+
+  <!-- Industries -->
+  <url><loc>https://www.skydotinfotech.com/industries/government</loc><priority>0.7</priority></url>
+  <url><loc>https://www.skydotinfotech.com/industries/railways</loc><priority>0.7</priority></url>
+  <url><loc>https://www.skydotinfotech.com/industries/education</loc><priority>0.7</priority></url>
+  <url><loc>https://www.skydotinfotech.com/industries/manufacturing</loc><priority>0.7</priority></url>
+  <url><loc>https://www.skydotinfotech.com/industries/real-estate</loc><priority>0.7</priority></url>
+  <url><loc>https://www.skydotinfotech.com/industries/retail</loc><priority>0.7</priority></url>
+</urlset>

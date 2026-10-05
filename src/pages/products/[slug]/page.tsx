@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { ExplodedArchitecture } from "@/components/animations/exploded-architecture";
 import { DashboardMockup } from "@/components/animations/dashboard-mockup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProductDetail() {
@@ -23,6 +23,21 @@ export default function ProductDetail() {
   const product = getProductData(slug);
 
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    if (product) {
+      document.title = `${product.title} | Skydot Infotech`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", product.description);
+      } else {
+        const meta = document.createElement('meta');
+        meta.name = "description";
+        meta.content = product.description;
+        document.head.appendChild(meta);
+      }
+    }
+  }, [product]);
 
   if (!product) {
     return (

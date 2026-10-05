@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const SQRT_5000 = Math.sqrt(5000);
@@ -119,14 +119,17 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           height: 2
         }}
       />
-      <img
-        src={testimonial.imgSrc}
-        alt={`${testimonial.by.split(',')[0]}`}
-        className="mb-4 h-14 w-12 bg-muted object-cover object-top"
+      <div
+        className={cn(
+          "mb-4 flex h-14 w-12 items-center justify-center shrink-0 border",
+          isCenter ? "bg-white/10 text-white border-white/20" : "bg-muted text-muted-foreground border-border"
+        )}
         style={{
           boxShadow: isCenter ? "3px 3px 0px rgba(0,0,0,0.1)" : "3px 3px 0px hsl(var(--background))"
         }}
-      />
+      >
+        <User className="h-6 w-6" />
+      </div>
       <h3 className={cn(
         "text-base sm:text-xl font-medium",
         isCenter ? "text-white" : "text-foreground"

@@ -45,39 +45,20 @@ function AiVisual() {
 }
 
 function ErpVisual() {
-  const modules = ["Finance", "HR", "Inventory", "CRM", "Payroll", "Procurement"];
   return (
     <div className="rounded-[3px] border border-border bg-card overflow-hidden">
       <div className="flex items-center justify-between border-b border-border px-4 py-3 bg-secondary/20">
-        <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Skydot ERP — Overview</span>
+        <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">skyerp.in</span>
+        <span className="flex items-center gap-1.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live
+        </span>
       </div>
-      <div className="p-5 flex flex-col gap-4">
-        <div className="grid grid-cols-3 gap-2">
-          {modules.map((mod, i) => (
-            <div key={mod} className={`rounded-[3px] border p-3 text-center ${i === 0 ? "border-[var(--skydot-blue)]/40 bg-[var(--skydot-blue)]/8" : "border-border bg-secondary/20"}`}>
-              <p className="text-[11px] font-semibold text-muted-foreground">{mod}</p>
-              <p className={`text-[10px] mt-1 font-medium ${i === 0 ? "text-[var(--skydot-blue)]" : "text-emerald-600 dark:text-emerald-400"}`}>{i === 0 ? "Active" : "Synced"}</p>
-            </div>
-          ))}
-        </div>
-        <div className="rounded-[3px] border border-border overflow-hidden">
-          <div className="grid grid-cols-3 border-b border-border bg-secondary/30 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground px-3 py-2">
-            <div>Transaction</div>
-            <div>Module</div>
-            <div>Status</div>
-          </div>
-          {[
-            { tx: "PO-2024-0891", mod: "Procurement", st: "Approved" },
-            { tx: "INV-2024-1204", mod: "Inventory", st: "Syncing" },
-            { tx: "PAY-2024-0332", mod: "Payroll", st: "Processed" },
-          ].map((row) => (
-            <div key={row.tx} className="grid grid-cols-3 border-b border-border last:border-0 px-3 py-2.5 text-[11px]">
-              <span className="font-medium font-mono">{row.tx}</span>
-              <span className="text-muted-foreground">{row.mod}</span>
-              <span className="text-[var(--skydot-blue)] font-medium">{row.st}</span>
-            </div>
-          ))}
-        </div>
+      <div className="flex flex-col relative bg-white dark:bg-white/5">
+        <img 
+          src="https://skyerpnext.in/images/modules/crm-hero.gif" 
+          alt="ERP Dashboard Analytics" 
+          className="w-full h-auto"
+        />
       </div>
     </div>
   );

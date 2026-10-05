@@ -88,7 +88,7 @@ export const processSteps = [
   { number: "05", title: "Improve", description: "Measure, refine, and evolve." },
 ];
 
-export const featuredProducts = products.filter((p) => p.verified).slice(0, 4);
+export const featuredProducts = products.filter((p) => p.verified);
 
 export const homepageIndustries = industries.filter((i) => i.verified);
 
