@@ -52,25 +52,32 @@ export function HomeProductsShowcase() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-px bg-border">
-          {featuredProducts.map((product, i) => (
-            <div
-              key={product.slug}
-              ref={(el) => { itemRefs.current[i] = el; }}
-              className="group bg-background dark:bg-background p-8 md:p-10 flex flex-col justify-between min-h-[280px] hover:bg-secondary/30 dark:hover:bg-card/40 transition-colors duration-300"
-            >
+          {featuredProducts.map((product, i) => {
+            const isExternal = product.slug === 'sky-erp';
+            const CardWrapper = isExternal ? 'a' : Link;
+            const linkProps = isExternal 
+              ? { href: "https://skyerpnext.in", target: "_blank", rel: "noopener noreferrer" }
+              : { to: `/products/${product.slug}` };
+
+            return (
+              <CardWrapper
+                key={product.slug}
+                {...linkProps as any}
+                ref={(el: any) => { itemRefs.current[i] = el; }}
+                className="group block bg-background dark:bg-background p-8 md:p-10 flex flex-col justify-between min-h-[280px] hover:bg-secondary/30 dark:hover:bg-card/40 transition-colors duration-300"
+              >
               <div>
                 <div className="flex items-start justify-between gap-4 mb-5">
                   <div>
                     <span className="home-label text-[var(--skydot-blue)] mb-2 block">{product.category}</span>
                     <h3 className="text-2xl md:text-3xl font-light tracking-tight">{product.title}</h3>
                   </div>
-                  <Link
-                    to={`/products/${product.slug}`}
+                  <div
                     className="shrink-0 h-9 w-9 rounded-full border border-border flex items-center justify-center text-muted-foreground group-hover:border-[var(--skydot-blue)] group-hover:text-[var(--skydot-blue)] transition-all duration-200"
-                    aria-label={`View ${product.title}`}
+                    aria-label={`Visit ${product.title}`}
                   >
                     <ArrowUpRight className="h-4 w-4" />
-                  </Link>
+                  </div>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{product.description}</p>
               </div>
@@ -84,8 +91,9 @@ export function HomeProductsShowcase() {
                   ))}
                 </div>
               </div>
-            </div>
-          ))}
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
     </section>

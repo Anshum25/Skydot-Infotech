@@ -8,11 +8,12 @@ export interface Product {
   industries: string[];
   technologies: string[];
   verified: boolean;
+  externalUrl?: string;
 }
 
 export const products: Product[] = [
   {
-    title: "Sky ERP",
+    title: "SKYDOTERP",
     slug: "sky-erp",
     category: "Enterprise",
     description: "An integrated enterprise platform powered by ERPNext for managing operations across finance, HR, manufacturing, and more.",
@@ -20,7 +21,8 @@ export const products: Product[] = [
     screenshots: [],
     industries: ["Manufacturing", "Retail & E-commerce", "Healthcare", "Education", "Distribution"],
     technologies: ["Frappe", "Python", "MariaDB", "Redis"],
-    verified: true
+    verified: true,
+    externalUrl: "https://skyerpnext.in"
   },
   {
     title: "Frappe Custom Apps",
@@ -36,23 +38,23 @@ export const products: Product[] = [
   {
     title: "ITMS",
     slug: "itms",
-    category: "Management",
-    description: "Integrated Transport Management System for intelligent traffic and transportation routing.",
-    features: ["Real-time tracking", "Route optimization", "Analytics dashboard"],
+    category: "Training Management",
+    description: "An integrated digital platform designed to manage and streamline the complete training lifecycle of an institute.",
+    features: ["Training Planning", "Course Management", "Assessments & Reports"],
     screenshots: [],
-    industries: ["Transportation", "Government"],
+    industries: ["Education", "Corporate Training"],
     technologies: ["Node.js", "PostgreSQL", "React"],
     verified: true
   },
   {
-    title: "LMS",
-    slug: "lms",
+    title: "LMS - Moodle",
+    slug: "lms-moodle",
     category: "Education",
-    description: "A comprehensive Learning Management System designed for educational institutions to manage courses and students.",
-    features: ["Online classes", "Assignment tracking", "Gradebook"],
+    description: "A comprehensive Learning Management System powered by customized Moodle deployment for scalable and highly interactive e-learning platforms.",
+    features: ["Online classes", "Assignment tracking", "Custom themes", "Plugin integration"],
     screenshots: [],
-    industries: ["Education", "Corporate Training"],
-    technologies: ["React", "Node.js", "MongoDB"],
+    industries: ["Education", "Corporate Training", "Institutions"],
+    technologies: ["PHP", "MariaDB", "Linux", "React"],
     verified: true
   },
   {
@@ -77,17 +79,7 @@ export const products: Product[] = [
     technologies: ["React Native", "Node.js", "MySQL"],
     verified: true
   },
-  {
-    title: "MOODLE",
-    slug: "moodle",
-    category: "Education",
-    description: "Customized Moodle deployment for scalable and highly interactive e-learning platforms.",
-    features: ["Custom themes", "Plugin integration", "Scalable hosting"],
-    screenshots: [],
-    industries: ["Education", "Institutions"],
-    technologies: ["PHP", "MariaDB", "Linux"],
-    verified: true
-  },
+
   {
     title: "MCX APIs",
     slug: "mcx-apis",

@@ -8,14 +8,15 @@ export interface ProductDetailData {
   benefits: { title: string; description: string }[];
   targetUsers: string[];
   relatedSolutions: { title: string; slug: string }[];
+  brochureUrl?: string;
 }
 
 export const detailedProducts: Record<string, ProductDetailData> = {
   "sky-erp": {
-    title: "Sky ERP",
+    title: "SKYDOTERP",
     category: "Enterprise",
     description: "An integrated enterprise platform powered by ERPNext for managing operations across finance, HR, manufacturing, and more.",
-    overview: "Sky ERP is our flagship pre-configured ERPNext product built for global SMEs. It provides a unified view of your entire operation in real-time. It is tax-ready, industry-specific, and deployable in weeks, eliminating the cost of chaos with the power of clarity.",
+    overview: "SKYDOTERP is our flagship pre-configured ERPNext product built for global SMEs. It provides a unified view of your entire operation in real-time. It is tax-ready, industry-specific, and deployable in weeks, eliminating the cost of chaos with the power of clarity.",
     problemSolved: "Replaces disconnected systems, manual Excel reports, and slow decisions with one unified platform, automated workflows, and real-time dashboards.",
     features: [
       "Financial Control (GST, Banking, Multi-currency)",
@@ -54,37 +55,45 @@ export const detailedProducts: Record<string, ProductDetailData> = {
   },
   "itms": {
     title: "ITMS",
-    category: "Management",
-    description: "Integrated Transport Management System for intelligent traffic routing.",
-    overview: "ITMS provides a comprehensive platform for managing transportation networks, optimizing routes, and analyzing traffic data in real-time.",
-    problemSolved: "Reduces congestion and improves fleet efficiency through advanced analytics and tracking.",
-    features: ["Real-time tracking", "Route optimization", "Analytics dashboard"],
-    benefits: [
-      { title: "Efficiency", description: "Improves overall fleet management." },
-      { title: "Data-Driven", description: "Real-time analytics for better decision making." }
-    ],
-    targetUsers: ["Transportation Agencies", "Fleet Operators"],
-    relatedSolutions: [{ title: "ERP Solutions", slug: "erp-enterprise" }]
-  },
-  "lms": {
-    title: "LMS",
-    category: "Education Technology",
-    description: "Comprehensive platform for digital education delivery and administration.",
-    overview: "Our proprietary Learning Management System provides a highly scalable environment for educational institutions and corporate training departments to deliver content, assess performance, and track engagement.",
-    problemSolved: "Fragmented tools for video hosting, assignment tracking, and grading create friction for both educators and learners. This LMS provides a unified, seamless experience.",
+    category: "Institute Training Management System",
+    description: "Empowering Training Through Technology. Plan • Manage • Train • Assess • Analyze • Improve.",
+    overview: "ITMS (Institute Training Management System) is an integrated digital platform designed to manage and streamline the complete training lifecycle of an institute. It brings training planning, course management, trainee records, faculty management, attendance, assessments, examinations, reports, and other training activities into a single centralized system.",
+    problemSolved: "ITMS connects all major training activities through one centralized platform. It helps administrators plan courses, manage trainees and faculty, schedule training sessions, record attendance, conduct assessments and examinations, manage results, and generate reports. This reduces manual work and keeps training information organized, accessible, and up to date.",
     features: [
-      "Video Course Hosting",
-      "Automated Grading",
-      "Student Progress Analytics",
-      "Interactive Discussion Boards",
+      "Training & Course Management",
+      "Trainee & Faculty Records",
+      "Attendance Tracking",
+      "Assessments & Examinations",
+      "Comprehensive Reports & Analytics"
+    ],
+    benefits: [
+      { title: "Operational Efficiency", description: "Automates routine processes, reduces manual data entry, minimizes errors, and saves time across departments." },
+      { title: "Data-Driven Decisions", description: "Transforms training data into meaningful insights. Centralized data helps management monitor performance, attendance, and faculty activities." }
+    ],
+    targetUsers: ["Training Administrators", "Faculty", "Trainees", "Management"],
+    relatedSolutions: [{ title: "LMS", slug: "lms-moodle" }],
+    brochureUrl: "/Institutional Training Management System (2) (2) (1).pdf"
+  },
+  "lms-moodle": {
+    title: "LMS - Moodle",
+    category: "Education Technology",
+    description: "Comprehensive platform for digital education delivery, powered by highly interactive and customized Moodle deployments.",
+    overview: "Our proprietary Learning Management System provides a highly scalable environment for educational institutions and corporate training departments. By customizing and deploying Moodle, we create branded, high-performance learning environments to deliver content, assess performance, and track engagement seamlessly.",
+    problemSolved: "Fragmented tools for video hosting, assignment tracking, and grading create friction. This LMS provides a unified, reliable, open-source-based learning platform tailored to your specific institutional needs.",
+    features: [
+      "Video Course Hosting & Discussions",
+      "Automated Grading & Analytics",
+      "Custom Themes & Plugin Integration",
+      "Scalable Moodle Hosting",
       "Certificate Generation"
     ],
     benefits: [
-      { title: "Centralized Learning", description: "All resources and interactions happen in one secure environment." },
-      { title: "Actionable Insights", description: "Detailed analytics help identify struggling students early." }
+      { title: "Centralized & Cost-Effective", description: "All resources in one secure environment, leveraging robust open-source technology." },
+      { title: "Actionable Insights", description: "Detailed analytics help identify struggling students early." },
+      { title: "Highly Customizable", description: "Can be tailored to any educational workflow and branded perfectly." }
     ],
-    targetUsers: ["Universities", "Corporate Trainers", "EdTech Startups"],
-    relatedSolutions: [{ title: "Web Development", slug: "web-software-development" }]
+    targetUsers: ["Universities", "Schools", "Corporate Trainers", "EdTech Startups"],
+    relatedSolutions: [{ title: "Cloud & Infrastructure", slug: "cloud-infrastructure" }]
   },
   "cms": {
     title: "CMS",
@@ -114,20 +123,7 @@ export const detailedProducts: Record<string, ProductDetailData> = {
     targetUsers: ["Retailers", "Restaurants"],
     relatedSolutions: [{ title: "ERP Solutions", slug: "erp-enterprise" }]
   },
-  "moodle": {
-    title: "MOODLE",
-    category: "Education",
-    description: "Customized Moodle deployment for scalable and highly interactive e-learning platforms.",
-    overview: "We deploy and customize Moodle to create branded, high-performance learning environments.",
-    problemSolved: "Provides a reliable, open-source based learning platform tailored to specific institutional needs.",
-    features: ["Custom themes", "Plugin integration", "Scalable hosting"],
-    benefits: [
-      { title: "Cost-Effective", description: "Leverages open-source technology." },
-      { title: "Highly Customizable", description: "Can be tailored to any educational workflow." }
-    ],
-    targetUsers: ["Schools", "Universities", "Corporate Training"],
-    relatedSolutions: [{ title: "Cloud & Infrastructure", slug: "cloud-infrastructure" }]
-  },
+
   "mcx-apis": {
     title: "MCX APIs",
     category: "Finance",

@@ -15,11 +15,6 @@ import { products } from "@/data/products";
 import { industries } from "@/data/industries";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-const components = [
-  { title: "About Us", href: "/about", description: "Learn about Skydot Infotech's mission, vision, and our experienced team." },
-  { title: "Careers", href: "/careers", description: "Join us in building the future of enterprise software and AI solutions." },
-  { title: "Our Process", href: "/about#process", description: "Discover our systematic approach to delivering robust technology solutions." },
-];
 
 const highlightClassName = "dark:bg-accent bg-foreground/[0.06] rounded-lg";
 
@@ -99,27 +94,11 @@ export function MainNav({ isTransparent = false }: { isTransparent?: boolean }) 
             </MotionNavigationMenuLink>
           </MotionNavigationMenuItem>
 
-          {/* About Dropdown */}
-          <MotionNavigationMenuItem value="about">
-            <MotionNavigationMenuTrigger className={cn("rounded-sm font-semibold", triggerClass)}>
+          {/* About */}
+          <MotionNavigationMenuItem>
+            <MotionNavigationMenuLink as={Link} to="/about" className="flex h-9 items-center px-4 py-2 text-sm font-semibold">
               About
-            </MotionNavigationMenuTrigger>
-            <MotionNavigationMenuContent highlightClassName={highlightClassName}>
-              <div className="grid w-[400px] gap-2 p-2 md:w-[500px] md:grid-cols-2 lg:w-[500px]">
-                {components.map((component) => (
-                  <MotionNavigationMenuLink
-                    as={Link}
-                    key={component.title}
-                    to={component.href}
-                  >
-                    <span className="block text-sm font-medium mb-1">{component.title}</span>
-                    <span className="text-muted-foreground block text-xs line-clamp-2">
-                      {component.description}
-                    </span>
-                  </MotionNavigationMenuLink>
-                ))}
-              </div>
-            </MotionNavigationMenuContent>
+            </MotionNavigationMenuLink>
           </MotionNavigationMenuItem>
 
           {/* Insights */}
@@ -202,20 +181,39 @@ function ProductsDropdownContent() {
               </div>
             </div>
 
-            <MotionNavigationMenuLink 
-              as={Link} 
-              to={`/products/${activeProduct.slug}`} 
-              className="group relative w-44 overflow-hidden rounded-full bg-primary p-2.5 text-center font-medium text-primary-foreground transition-all flex flex-row items-center justify-center shrink-0 ml-4 mb-2 !border-none hover:shadow-lg focus:shadow-lg"
-            >
-              <span className="relative z-10 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0 text-sm">
-                Explore Product
-              </span>
-              <div className="absolute top-0 z-20 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
-                <span className="text-sm font-medium">Explore</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </div>
-              <div className="absolute left-[10%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-[var(--skydot-orange)] transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[2.5] z-0"></div>
-            </MotionNavigationMenuLink>
+            {activeProduct.externalUrl ? (
+              <MotionNavigationMenuLink 
+                as="a"
+                href={activeProduct.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative w-44 overflow-hidden rounded-full bg-primary p-2.5 text-center font-medium text-primary-foreground transition-all flex flex-row items-center justify-center shrink-0 ml-4 mb-2 !border-none hover:shadow-lg focus:shadow-lg"
+              >
+                <span className="relative z-10 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0 text-sm">
+                  Explore Product
+                </span>
+                <div className="absolute top-0 z-20 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
+                  <span className="text-sm font-medium">Explore</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </div>
+                <div className="absolute left-[10%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-[var(--skydot-orange)] transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[2.5] z-0"></div>
+              </MotionNavigationMenuLink>
+            ) : (
+              <MotionNavigationMenuLink 
+                as={Link} 
+                to={`/products/${activeProduct.slug}`} 
+                className="group relative w-44 overflow-hidden rounded-full bg-primary p-2.5 text-center font-medium text-primary-foreground transition-all flex flex-row items-center justify-center shrink-0 ml-4 mb-2 !border-none hover:shadow-lg focus:shadow-lg"
+              >
+                <span className="relative z-10 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0 text-sm">
+                  Explore Product
+                </span>
+                <div className="absolute top-0 z-20 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
+                  <span className="text-sm font-medium">Explore</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </div>
+                <div className="absolute left-[10%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-[var(--skydot-orange)] transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[2.5] z-0"></div>
+              </MotionNavigationMenuLink>
+            )}
           </div>
           
           <div className="mt-6 pt-4 border-t border-border/50">

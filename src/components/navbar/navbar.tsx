@@ -52,7 +52,7 @@ export function Navbar() {
     >
       {/* Logo */}
       <Link to="/" className="flex items-center shrink-0 hover:opacity-80 transition-opacity mr-4">
-        <Logo className="h-9 w-36 lg:h-10 lg:w-40" />
+        <Logo className="h-12 w-48 lg:h-14 lg:w-56" />
       </Link>
 
       {/* Divider */}

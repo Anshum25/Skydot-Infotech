@@ -41,8 +41,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Headquarters</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      Gondal Road<br/>
-                      Rajkot, Gujarat, India
+                      NivaSync Infotech Pvt. Ltd.<br/>
+                      603, ZION Z1, Nr. Regenta Hotel, Ramdas Road,<br/>
+                      SindhuBhavan Road<br/>
+                      Bodakdev, Ahmedabad, Gujarat - 380059
                     </p>
                   </div>
                 </div>
@@ -54,8 +56,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Phone</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      +91 8000 800 500<br/>
-                      Support Hours: Mon-Fri, 9:00 AM - 6:00 PM (IST)
+                      Sales: (+91) 97144 90600<br/>
+                      Support: (+91) 97145 90600
                     </p>
                   </div>
                 </div>
@@ -65,10 +67,10 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5 text-green-500" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Email</h3>
+                    <h3 className="text-lg font-semibold tracking-tight text-foreground mb-2">Email & Website</h3>
                     <p className="text-muted-foreground leading-relaxed text-sm">
-                      General: info@skydotinfotech.com<br/>
-                      Sales: sales@skydotinfotech.com
+                      hello@nivasync.in<br/>
+                      www.nivasync.in
                     </p>
                   </div>
                 </div>

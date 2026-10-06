@@ -51,7 +51,7 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
       { step: "Customization & Integration", description: "Tailoring the ERP modules to your logic." },
       { step: "Training & Rollout", description: "Phased deployment and training." }
     ],
-    technologies: ["ERPNext", "Frappe", "Sky ERP"],
+    technologies: ["ERPNext", "Frappe", "SKYDOTERP"],
     faqs: [
       { question: "Can the ERP integrate with our legacy systems?", answer: "Yes, we build secure API bridges." }
     ]
@@ -75,7 +75,7 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
       { step: "Configuration", description: "Setting up BOMs, routing, and workstations." },
       { step: "Deployment", description: "Phased go-live with minimal disruption." }
     ],
-    technologies: ["Sky ERP", "Frappe Apps"],
+    technologies: ["SKYDOTERP", "Frappe Apps"],
     faqs: [
       { question: "Does it support multi-level BOMs?", answer: "Yes, completely integrated and hierarchical." }
     ]
@@ -99,7 +99,7 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
       { step: "Logistics Configuration", description: "Setting up delivery routes and vehicles." },
       { step: "Integration", description: "Connecting with eCommerce and payment gateways." }
     ],
-    technologies: ["Sky ERP", "Logistics Modules"],
+    technologies: ["SKYDOTERP", "Logistics Modules"],
     faqs: [
       { question: "Can we track batch expiry?", answer: "Yes, complete batch and serial number tracking is built-in." }
     ]
@@ -122,7 +122,7 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
       { step: "System Setup", description: "Configuring wards, beds, and specialized departments." },
       { step: "Staff Training", description: "Comprehensive training for medical and admin staff." }
     ],
-    technologies: ["Sky ERP Healthcare", "Frappe Apps"],
+    technologies: ["SKYDOTERP Healthcare", "Frappe Apps"],
     faqs: [
       { question: "Is the data secure?", answer: "Yes, we implement strict RBAC and encryption." }
     ]
@@ -145,7 +145,7 @@ export const detailedSolutions: Record<string, SolutionDetailData> = {
       { step: "Data Migration", description: "Importing existing student and staff records." },
       { step: "Portal Launch", description: "Rolling out student and parent portals." }
     ],
-    technologies: ["Sky ERP Education", "LMS"],
+    technologies: ["SKYDOTERP Education", "LMS"],
     faqs: [
       { question: "Do parents get access?", answer: "Yes, dedicated portals are available for parents to track progress and pay fees." }
     ]
@@ -175,7 +175,7 @@ export function getSolutionData(slug: string): SolutionDetailData {
       { step: "Discovery", description: "Comprehensive analysis of existing systems and requirement gathering." },
       { step: "Implementation", description: "Agile deployment with rigorous testing and quality assurance." }
     ],
-    technologies: ["Sky ERP", "Frappe Framework", "Enterprise Architectures"],
+    technologies: ["SKYDOTERP", "Frappe Framework", "Enterprise Architectures"],
     faqs: [
       { question: "How is this customized for our business?", answer: "Every implementation begins with a deep architectural audit to ensure our solutions map perfectly to your unique workflows." }
     ]

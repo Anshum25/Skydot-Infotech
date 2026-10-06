@@ -48,7 +48,7 @@ function ErpVisual() {
   return (
     <div className="rounded-[3px] border border-border bg-card overflow-hidden">
       <div className="flex items-center justify-between border-b border-border px-4 py-3 bg-secondary/20">
-        <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">skyerp.in</span>
+        <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">skyerpnext.in</span>
         <span className="flex items-center gap-1.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live
         </span>

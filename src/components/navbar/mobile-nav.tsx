@@ -107,20 +107,18 @@ export function MobileNav() {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value="about">
-                <AccordionTrigger className="text-base font-medium">About</AccordionTrigger>
-                <AccordionContent>
-                  <div className="flex flex-col space-y-2">
-                    <Link to="/about" className="text-muted-foreground hover:text-primary py-1" onClick={() => setOpen(false)}>About Us</Link>
-                    <Link to="/careers" className="text-muted-foreground hover:text-primary py-1" onClick={() => setOpen(false)}>Careers</Link>
-                    <Link to="/about#process" className="text-muted-foreground hover:text-primary py-1" onClick={() => setOpen(false)}>Our Process</Link>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
+
 
             </Accordion>
 
             <motion.div variants={{ hidden: { opacity: 0, x: -10 }, show: { opacity: 1, x: 0 } }} className="mt-4 flex flex-col space-y-4 pt-4 border-t">
+              <Link
+                to="/about"
+                className="text-base font-medium hover:text-primary"
+                onClick={() => setOpen(false)}
+              >
+                About
+              </Link>
               <Link
                 to="/work"
                 className="text-base font-medium hover:text-primary"

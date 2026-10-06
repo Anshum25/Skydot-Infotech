@@ -51,7 +51,7 @@ export const detailedIndustries: Record<string, IndustryDetailData> = {
       { title: "Mobile Applications", slug: "mobile-applications" }
     ],
     relevantProducts: [
-      { title: "LMS", slug: "lms" },
+      { title: "LMS - Moodle", slug: "lms-moodle" },
       { title: "Online Examination System", slug: "online-examination-system" }
     ]
   }

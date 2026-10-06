@@ -10,10 +10,22 @@ import {
   Zap,
   ChevronRight,
   Box,
-  Target
+  Target,
+  Database,
+  Building2,
+  Users,
+  BookOpen,
+  Layout,
+  BarChart,
+  GraduationCap,
+  Gamepad2,
+  Hexagon,
+  Layers
 } from "lucide-react";
 import { ExplodedArchitecture } from "@/components/animations/exploded-architecture";
 import { DashboardMockup } from "@/components/animations/dashboard-mockup";
+import { IndiaMapDashboard } from "@/components/dashboard/india-map-dashboard";
+import { McxLiveDashboard } from "@/components/dashboard/mcx-live-dashboard";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,6 +35,7 @@ export default function ProductDetail() {
   const product = getProductData(slug);
 
   const [activeTab, setActiveTab] = useState(0);
+  const [isBrochureOpen, setIsBrochureOpen] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -66,32 +79,78 @@ export default function ProductDetail() {
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </span>
         </Link>
-        <a
-          href="#capabilities"
-          className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm border border-border bg-background/60 px-6 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:border-[var(--skydot-orange)] active:scale-[0.98]"
-        >
-          <div className="absolute inset-0 bg-[var(--skydot-orange)] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
-          <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
-            Explore Features
-          </span>
-        </a>
+        {product.brochureUrl ? (
+          <button
+            onClick={() => setIsBrochureOpen(true)}
+            className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm border border-border bg-background/60 px-6 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:border-[var(--skydot-orange)] active:scale-[0.98]"
+          >
+            <div className="absolute inset-0 bg-[var(--skydot-orange)] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
+            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+              Explore Features
+            </span>
+          </button>
+        ) : (
+          <a
+            href="#capabilities"
+            className="group relative overflow-hidden inline-flex items-center gap-2 rounded-sm border border-border bg-background/60 px-6 py-3.5 text-sm font-semibold backdrop-blur-sm transition-all hover:border-[var(--skydot-orange)] active:scale-[0.98]"
+          >
+            <div className="absolute inset-0 bg-[var(--skydot-orange)] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0" />
+            <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300">
+              Explore Features
+            </span>
+          </a>
+        )}
       </PageHeader>
 
       {/* 2. TRUST STRIP */}
       <section className="home-section py-16 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12">
-          <p className="home-label mb-6 text-center">Trusted by organizations using {product.title}</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale">
-            <div className="text-2xl font-bold tracking-tighter">CLIENT A</div>
-            <div className="text-2xl font-bold italic">PARTNER B</div>
-            <div className="text-2xl font-black">ENTERPRISE C</div>
-            <div className="text-2xl font-bold tracking-widest">ORG D</div>
+          <p className="home-label mb-10 text-center">
+            {slug === 'frappe-apps' ? 'Ecosystem of Frappe Apps' : `Trusted by organizations using ${product.title}`}
+          </p>
+          <div className="w-full overflow-hidden relative group">
+            {/* Gradient Fades for edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+            <div className="flex w-max animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]">
+              {/* Double the logos to create the infinite scroll effect */}
+              {Array(4).fill(slug === 'frappe-apps' ? [
+                { name: "ERPNext", icon: Database, color: "text-blue-500" },
+                { name: "Frappe HR", icon: Users, color: "text-rose-500" },
+                { name: "Frappe Books", icon: BookOpen, color: "text-amber-500" },
+                { name: "Frappe Desk", icon: Layout, color: "text-slate-500" },
+                { name: "Frappe Builder", icon: Box, color: "text-emerald-500" },
+                { name: "Frappe Insights", icon: BarChart, color: "text-violet-500" },
+                { name: "Frappe LMS", icon: GraduationCap, color: "text-cyan-500" },
+                { name: "Gameplan", icon: Gamepad2, color: "text-orange-500" }
+              ] : [
+                { name: "CLIENT A", icon: Building2, color: "text-muted-foreground" },
+                { name: "PARTNER B", icon: Hexagon, color: "text-muted-foreground" },
+                { name: "ENTERPRISE C", icon: Layers, color: "text-muted-foreground" },
+                { name: "ORG D", icon: Box, color: "text-muted-foreground" },
+                { name: "BRAND E", icon: Target, color: "text-muted-foreground" },
+                { name: "COMPANY F", icon: Database, color: "text-muted-foreground" }
+              ]).flat().map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center gap-2.5 mx-6 md:mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-default"
+                >
+                  <item.icon className={`w-6 h-6 ${item.color}`} />
+                  <span className="font-semibold text-foreground/80 text-base md:text-lg tracking-tight whitespace-nowrap transition-colors">
+                    {item.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* 3. CAPABILITIES GRID (Feature Highlights) */}
-      <section id="capabilities" className="home-section relative py-24 md:py-32 bg-background border-t border-border">
+      {slug !== 'mcx-apis' && (
+        <>
+          <section id="capabilities" className="home-section relative py-24 md:py-32 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mb-16 md:mb-20">
             <p className="home-label mb-5">Features</p>
@@ -197,6 +256,18 @@ export default function ProductDetail() {
           </div>
         </div>
       </section>
+      </>
+      )}
+
+      {slug === 'mcx-apis' && <McxLiveDashboard />}
+
+      {slug === 'itms' && (
+        <section className="home-section relative py-12 md:py-16 bg-background">
+          <div className="container mx-auto px-6 md:px-12">
+            <IndiaMapDashboard />
+          </div>
+        </section>
+      )}
 
       {/* 5. WHY THIS PRODUCT / BUSINESS VALUE */}
       <section className="home-section relative py-24 md:py-32 bg-background border-t border-border">
@@ -234,6 +305,44 @@ export default function ProductDetail() {
       {/* 6. FINAL CTA */}
       <HomeFinalCtaSection />
       
+      {/* BROCHURE MODAL */}
+      <AnimatePresence>
+        {isBrochureOpen && product.brochureUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4 md:p-10"
+            onClick={() => setIsBrochureOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="relative w-full max-w-4xl h-[80vh] bg-card border border-border shadow-2xl rounded-lg overflow-hidden flex flex-col"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-secondary/30">
+                <h3 className="font-semibold text-foreground">Explore Features (Brochure)</h3>
+                <button 
+                  onClick={() => setIsBrochureOpen(false)}
+                  className="p-1.5 rounded-sm hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <span className="sr-only">Close</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+              </div>
+              <div className="flex-1 w-full bg-muted/20">
+                <iframe 
+                  src={product.brochureUrl} 
+                  className="w-full h-full border-none"
+                  title={`${product.title} Brochure`}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

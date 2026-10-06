@@ -78,7 +78,7 @@ export default function ProductsPage() {
       {/* 1. HERO SECTION */}
       <PageHeader 
         eyebrow="Enterprise Software Solutions"
-        title={<>Custom Frappe & AI systems built for how you <span className="text-[var(--skydot-orange)] italic font-medium">actually</span> work.</>}
+        title={<>Custom Enterprise & AI systems built for how you <span className="text-[var(--skydot-orange)] italic font-medium">actually</span> work.</>}
         description="We engineer robust, industry-specific software platforms—from custom ERPs to advanced RAG chatbots—ready for rapid deployment and total scale."
       >
         <Link

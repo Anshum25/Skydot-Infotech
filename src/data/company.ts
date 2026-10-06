@@ -25,12 +25,12 @@ export const companyData: CompanyInfo = {
   name: "Skydot Infotech",
   tagline: "Technology that moves businesses forward.",
   description: "From AI-powered solutions and enterprise software to web, mobile and ERP, Skydot Infotech helps organizations turn complex ideas into scalable technology. We are a trusted technology partner dedicated to building practical, robust solutions for modern businesses.",
-  email: "info@skydotinfotech.com",
+  email: "hello@nivasync.in",
   phone: "+91 97144 90600",
   locations: [
     {
-      title: "Rajkot (HQ)",
-      address: "115, 4th Floor, Samruddhi Bhavan, Opposite Bombay Petrol Pump, Gondal Road, Rajkot - 360002, Gujarat",
+      title: "Ahmedabad (HQ)",
+      address: "603, ZION Z1, Nr. Regenta Hotel, Ramdas Road, SindhuBhavan Road, Bodakdev, Ahmedabad, Gujarat - 380059",
     }
   ],
   social: {
