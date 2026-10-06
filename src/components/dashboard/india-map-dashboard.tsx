@@ -1,231 +1,202 @@
-import React, { useState, useMemo } from "react";
-import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
-import { geoCentroid } from "d3-geo";
-import { Search, MapPin, Building, GraduationCap, Map as MapIcon } from "lucide-react";
+import { useState, useMemo, useEffect, useRef } from "react";
+import { MapPin } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const geoUrl = "/india-states.json";
-
-const instituteData: Record<string, { total: number; institutes: string[] }> = {
-  "Madhya Pradesh": { total: 39, institutes: ["National Academy of Customs", "State Training Institute MP", "Police Training College Indore"] },
-  "Gujarat": { total: 25, institutes: ["Gujarat Police Academy", "SPIPA Ahmedabad", "NID Gandhinagar"] },
-  "Maharashtra": { total: 85, institutes: ["YASHADA Pune", "National Fire Service College", "MJPTRTI"] },
-  "Uttar Pradesh": { total: 112, institutes: ["Dr. B.R. Ambedkar Police Academy", "UPAM Lucknow"] },
-  "Karnataka": { total: 64, institutes: ["ATI Mysore", "National Institute of Design Bangalore"] },
-  "Andhra Pradesh": { total: 28, institutes: ["AP HRD Institute", "NACIN Zonal Campus"] },
-  "Delhi": { total: 95, institutes: ["LBSNAA Delhi Branch", "Indian Institute of Public Administration"] }
+const locations = {
+  industrial: [
+    { name: "Metalix Cable Trays, Hyderabad", pos: { lat: 17.4043, lng: 78.4423 } },
+    { name: "Uzzala Bio Energy Solutions, Ahmedabad", pos: { lat: 23.0225, lng: 72.5714 } },
+    { name: "Verdict Group, Ahmedabad", pos: { lat: 23.0225, lng: 72.5714 } },
+    { name: "R & R Synergies, Hyderabad", pos: { lat: 17.3871, lng: 78.4917 } },
+  ],
+  educational: [
+    {
+      name: "National Academy of Agricultural Research Management (NAARM), Hyderabad",
+      pos: { lat: 17.3151, lng: 78.4107 },
+    },
+    {
+      name: "All India Institute of Medical Science (AIIMS), Jodhpur",
+      pos: { lat: 26.2515, lng: 73.0243 },
+    },
+    {
+      name: "Institute of Teaching and Research in Ayurveda (ITRA), Jamnagar",
+      pos: { lat: 22.4707, lng: 70.0577 },
+    },
+  ],
+  railway: [
+    {
+      name: "National Academy of Indian Railways (NAIR), Vadodara",
+      pos: { lat: 22.2994, lng: 73.2081 },
+    },
+    {
+      name: "Indian Railways Institute of Mechanical and Electrical Engineering (IRIMEE), Jamalpur",
+      pos: { lat: 24.9199, lng: 86.2176 },
+    },
+    {
+      name: "Indian Railways Institute of Signal and Telecommunication Engineering (IRISET), Secunderabad",
+      pos: { lat: 17.4361, lng: 78.4986 },
+    },
+    {
+      name: "Indian Railways Institute of Disaster Management (IRIDM), Bengaluru",
+      pos: { lat: 12.9716, lng: 77.5946 },
+    },
+    {
+      name: "Zonal Railway Training Institute (ZRTI), Udaipur",
+      pos: { lat: 24.5713, lng: 73.691 },
+    },
+    { name: "STTI Byculla", pos: { lat: 18.9904, lng: 72.8408 } },
+    { name: "STTI Pandu", pos: { lat: 26.1767, lng: 91.7073 } },
+    { name: "STTI Podanur", pos: { lat: 11.006, lng: 76.956 } },
+    { name: "STTI Sabarmati", pos: { lat: 23.0755, lng: 72.5667 } },
+    { name: "MDDTI Bengaluru", pos: { lat: 12.9716, lng: 77.5946 } },
+    { name: "Diesel Loco Shed, Andal (Asansol)", pos: { lat: 23.1301, lng: 87.1116 } },
+  ],
 };
 
-const DEFAULT_CENTER: [number, number] = [80, 22];
-const DEFAULT_ZOOM = 4;
+const mapOptions = {
+  center: { lat: 23.0225, lng: 72.5714 },
+  zoom: 5,
+  mapTypeId: "roadmap",
+  gestureHandling: "greedy",
+  streetViewControl: false,
+  fullscreenControl: true,
+  zoomControl: true,
+  styles: [
+    { featureType: "all", elementType: "labels.text.fill", stylers: [{ color: "#2c3e50" }] },
+    { featureType: "water", elementType: "geometry.fill", stylers: [{ color: "#aadaff" }] },
+    { featureType: "landscape", elementType: "geometry.fill", stylers: [{ color: "#e9e5dc" }] },
+    { featureType: "road", elementType: "geometry.fill", stylers: [{ color: "#ffffff" }] },
+    { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#d7d7d7" }] },
+    {
+      featureType: "administrative.country",
+      elementType: "geometry.stroke",
+      stylers: [{ visibility: "on" }],
+    },
+  ],
+};
 
 export function IndiaMapDashboard() {
-  const [tooltipContent, setTooltipContent] = useState<any>(null);
-  const [selectedState, setSelectedState] = useState<string | null>(null);
-  const [position, setPosition] = useState({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [map, setMap] = useState<any>(null);
+  const [activeMarker, setActiveMarker] = useState<string | null>(null);
+  const markersRef = useRef<{ [key: string]: any }>({});
+  const infoWindowRef = useRef<any>(null);
 
-  const handleGeographyClick = (geo: any) => {
-    const stateName = geo.properties.name;
-    setSelectedState(stateName);
-    
-    try {
-      const centroid = geoCentroid(geo);
-      if (centroid && !isNaN(centroid[0]) && !isNaN(centroid[1])) {
-        setPosition({ coordinates: centroid as [number, number], zoom: 12 });
-      } else {
-        // Fallback
-        setPosition({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
-      }
-    } catch(e) {
-       setPosition({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+  type Location = { name: string; pos: { lat: number; lng: number } };
+
+  const allLocations = useMemo(() => {
+    return [...locations.railway];
+  }, []);
+
+  useEffect(() => {
+    const initMap = () => {
+      if (!mapRef.current || !window.google) return;
+      
+      const newMap = new window.google.maps.Map(mapRef.current, mapOptions);
+      setMap(newMap);
+      
+      const infoWindow = new window.google.maps.InfoWindow();
+      infoWindowRef.current = infoWindow;
+
+      allLocations.forEach((loc) => {
+        const marker = new window.google.maps.Marker({
+          position: loc.pos,
+          map: newMap,
+          title: loc.name,
+        });
+        
+        markersRef.current[loc.name] = marker;
+
+        marker.addListener("click", () => {
+          infoWindow.setContent(`
+            <div style="padding: 8px; font-family: 'Inter', sans-serif; max-width: 200px;">
+              <h3 style="margin: 0; color: #0f2942; font-size: 14px; font-weight: 600;">${loc.name}</h3>
+            </div>
+          `);
+          infoWindow.open(newMap, marker);
+          setActiveMarker(loc.name);
+        });
+      });
+    };
+
+    if (!window.google) {
+      const script = document.createElement("script");
+      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCBsxMiRZ1lgcPUaeJnkg5qcDcSP2mwepc";
+      script.async = true;
+      script.defer = true;
+      script.onload = initMap;
+      document.head.appendChild(script);
+    } else {
+      initMap();
     }
-  };
+  }, [allLocations]);
 
-  const handleReset = () => {
-    setSelectedState(null);
-    setPosition({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+  const handleLocationClick = (loc: Location) => {
+    if (map) {
+      map.panTo(loc.pos);
+      map.setZoom(8);
+      
+      const marker = markersRef.current[loc.name];
+      if (marker && infoWindowRef.current) {
+        window.google.maps.event.trigger(marker, 'click');
+      }
+    }
+    setActiveMarker(loc.name);
   };
-
-  const currentData = selectedState ? (instituteData[selectedState] || { total: Math.floor(Math.random() * 50) + 5, institutes: ["State Training Academy", "Regional Institute"] }) : { total: 936, institutes: ["ANDHRA PRADESH HUMAN RESOURCE DEVELOPMENT INSTITUTE", "COUNTER INSURGENCY AND ANTITERRORISM SCHOOL", "NACIN ZONAL CAMPUS VISAKHAPATNAM"] };
 
   return (
-    <div className="w-full bg-background border border-border rounded-xl shadow-sm overflow-hidden my-16">
-      <div className="bg-secondary/30 px-6 py-8 border-b border-border text-center">
-        <h2 className="text-3xl font-light text-foreground mb-2 flex items-center justify-center gap-3">
-          ITMS Across <span className="text-[var(--skydot-orange)] font-medium">India</span>
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Explore connected pathways to training, institutions, faculty and infrastructure across the ecosystem.
-        </p>
-      </div>
+    <>
+      {/* Map Section */}
+      <section id="global-office" className="bg-secondary/40 overflow-hidden py-16 rounded-2xl border border-border my-16">
+        <div className="bg-secondary/30 px-6 py-8 border-b border-border text-center mb-12 rounded-t-[2rem]">
+          <h2 className="text-3xl font-light text-foreground mb-2 flex items-center justify-center gap-3">
+            ITMS Across <span className="text-[var(--skydot-orange)] font-medium">India</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Explore connected pathways to training, institutions, faculty and infrastructure across the ecosystem.
+          </p>
+        </div>
 
-      <div className="grid lg:grid-cols-2">
-        {/* Map Section */}
-        <div className="relative p-4 md:p-8 border-r border-border min-h-[500px] flex items-center justify-center bg-secondary/10">
-          
-          <div className="absolute top-6 left-6 z-10 flex gap-2">
-            <button 
-              onClick={handleReset}
-              className="bg-background border border-border shadow-sm px-4 py-2 rounded-full text-sm font-semibold text-foreground flex items-center gap-2 hover:bg-secondary transition-colors"
-            >
-              <MapPin className="w-4 h-4 text-primary" />
-              {selectedState || "All India"}
-            </button>
-            {selectedState && (
-              <button 
-                onClick={handleReset}
-                className="bg-background border border-border shadow-sm px-4 py-2 rounded-full text-sm font-semibold text-[var(--skydot-blue)] flex items-center gap-2 hover:bg-secondary transition-colors"
-              >
-                <MapIcon className="w-4 h-4" />
-                All India Map
-              </button>
-            )}
+        <div className="max-w-[1400px] mx-auto bg-card rounded-[2rem] border border-border shadow-md overflow-hidden h-[600px] flex flex-col md:flex-row">
+          <div className="md:w-80 border-r border-border bg-secondary/20 flex flex-col h-1/2 md:h-full">
+            <div className="p-4 border-b border-border bg-background">
+              <h3 className="font-bold text-lg">Our Clients</h3>
+            </div>
+            <div className="overflow-y-auto p-4 space-y-6 flex-1 min-h-0 custom-scrollbar overscroll-contain" data-lenis-prevent="true">
+              <div>
+                <h4 className="text-sm font-bold text-[var(--skydot-blue)] uppercase tracking-wider mb-3">
+                  Railway Institutes
+                </h4>
+                <ul className="space-y-1">
+                  {locations.railway.map((loc) => (
+                    <li
+                      key={loc.name}
+                      onClick={() => handleLocationClick(loc)}
+                      className={cn(
+                        "text-sm p-2 rounded-lg cursor-pointer transition-colors",
+                        activeMarker === loc.name
+                          ? "bg-[var(--skydot-blue)]/10 text-[var(--skydot-blue)] font-medium"
+                          : "text-muted-foreground hover:bg-secondary/80 hover:text-foreground",
+                      )}
+                    >
+                      {loc.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div className="w-full h-full max-h-[600px] overflow-visible relative">
-            <ComposableMap
-              projection="geoMercator"
-              projectionConfig={{ scale: 1000 }}
-              className="w-full h-full outline-none"
-            >
-              <ZoomableGroup
-                zoom={position.zoom}
-                center={position.coordinates}
-                onMoveEnd={(position) => setPosition(position)}
-              >
-                <Geographies geography={geoUrl}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => {
-                      const stateName = geo.properties.name;
-                      const isSelected = selectedState === stateName;
-                      
-                      return (
-                        <Geography
-                          key={geo.rsmKey}
-                          geography={geo}
-                          onClick={() => handleGeographyClick(geo)}
-                          onMouseEnter={() => {
-                            const data = instituteData[stateName] || { total: Math.floor(Math.random() * 50) + 5 };
-                            setTooltipContent({ name: stateName, total: data.total });
-                          }}
-                          onMouseLeave={() => setTooltipContent(null)}
-                          style={{
-                            default: {
-                              fill: isSelected ? "#334155" : "#94a3b8", // Slate colors
-                              stroke: "#e2e8f0",
-                              strokeWidth: 0.5,
-                              outline: "none",
-                              transition: "all 250ms"
-                            },
-                            hover: {
-                              fill: "#475569",
-                              stroke: "#cbd5e1",
-                              strokeWidth: 0.5,
-                              outline: "none",
-                              cursor: "pointer"
-                            },
-                            pressed: {
-                              fill: "#1e293b",
-                              stroke: "#cbd5e1",
-                              strokeWidth: 0.5,
-                              outline: "none"
-                            },
-                          }}
-                        />
-                      );
-                    })
-                  }
-                </Geographies>
-                {/* We could add markers here if needed, but the user showed dots on the map */}
-              </ZoomableGroup>
-            </ComposableMap>
-
-            {/* Custom Tooltip */}
-            {tooltipContent && (
-              <div 
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2d3748] text-white p-4 rounded-md shadow-xl pointer-events-none z-50 min-w-[200px]"
-              >
-                <h4 className="font-bold text-lg mb-2">{tooltipContent.name}</h4>
-                <div className="text-sm text-gray-300">
-                  <p>Total Training Institutes:</p>
-                  <p className="text-[var(--skydot-orange)] font-bold text-xl">{tooltipContent.total}</p>
-                </div>
+          <div className="flex-1 relative h-1/2 md:h-full bg-slate-100" data-lenis-prevent="true">
+            <div ref={mapRef} className="absolute inset-0 w-full h-full" />
+            {!map && (
+              <div className="absolute inset-0 flex items-center justify-center bg-slate-100 z-10 pointer-events-none">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--skydot-blue)]"></div>
               </div>
             )}
           </div>
-
-          <div className="absolute bottom-6 right-6 flex flex-col gap-2 z-10">
-            <button 
-              onClick={() => setPosition(pos => ({ ...pos, zoom: pos.zoom * 1.5 }))}
-              className="bg-background border border-border shadow-sm w-8 h-8 rounded-md flex items-center justify-center hover:bg-secondary font-bold text-lg"
-            >
-              +
-            </button>
-            <button 
-              onClick={() => setPosition(pos => ({ ...pos, zoom: pos.zoom / 1.5 }))}
-              className="bg-background border border-border shadow-sm w-8 h-8 rounded-md flex items-center justify-center hover:bg-secondary font-bold text-lg"
-            >
-              -
-            </button>
-          </div>
         </div>
-
-        {/* Info Panel */}
-        <div className="p-6 md:p-8 flex flex-col h-[600px] overflow-hidden">
-          <div className="mb-6">
-            <p className="text-[var(--skydot-orange)] text-sm font-bold uppercase tracking-wider mb-1">Region</p>
-            <h3 className="text-3xl font-bold text-foreground">{selectedState || "All India"}</h3>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 mb-8">
-            <div className="border border-border rounded-lg p-4 bg-background shadow-sm">
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mb-2"><Building className="w-3 h-3"/> Central</p>
-              <p className="text-3xl font-bold text-slate-800 dark:text-slate-200">
-                {selectedState ? Math.floor(currentData.total * 0.3) : 296}
-              </p>
-            </div>
-            <div className="border border-border rounded-lg p-4 bg-background shadow-sm">
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mb-2"><Building className="w-3 h-3"/> State/UT</p>
-              <p className="text-3xl font-bold text-slate-800 dark:text-slate-200">
-                {selectedState ? Math.floor(currentData.total * 0.6) : 614}
-              </p>
-            </div>
-            <div className="border border-border rounded-lg p-4 bg-background shadow-sm">
-              <p className="text-xs text-muted-foreground flex items-center gap-1 mb-2"><Building className="w-3 h-3"/> PSU/CPSE</p>
-              <p className="text-3xl font-bold text-slate-800 dark:text-slate-200">
-                {selectedState ? Math.floor(currentData.total * 0.1) : 26}
-              </p>
-            </div>
-          </div>
-
-          <div className="relative mb-6">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-            <input 
-              type="text" 
-              placeholder={`Search Institutes in ${selectedState || "India"}...`}
-              className="w-full bg-background border border-border rounded-md pl-9 pr-4 py-2.5 text-sm outline-none focus:border-[var(--skydot-blue)] focus:ring-1 focus:ring-[var(--skydot-blue)]/20 transition-all"
-            />
-          </div>
-
-          <div className="flex-1 overflow-auto pr-2 custom-scrollbar">
-            <h4 className="text-sm font-bold mb-4">{currentData.total} Institutes</h4>
-            <div className="flex flex-col gap-3">
-              {currentData.institutes.map((inst, i) => (
-                <div key={i} className="bg-background border border-border p-4 rounded-lg shadow-sm hover:border-[var(--skydot-blue)]/50 transition-colors cursor-pointer group">
-                  <h5 className="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-[var(--skydot-blue)] transition-colors mb-1">{inst}</h5>
-                  <p className="text-xs text-muted-foreground">{selectedState || "New Delhi"}</p>
-                </div>
-              ))}
-              {/* Add some dummy filler ones so it looks full */}
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div key={`dummy-${i}`} className="bg-background border border-border p-4 rounded-lg shadow-sm hover:border-[var(--skydot-blue)]/50 transition-colors cursor-pointer group">
-                  <h5 className="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-[var(--skydot-blue)] transition-colors mb-1">Regional Training Center {i + 1}</h5>
-                  <p className="text-xs text-muted-foreground">{selectedState || "Various Locations"}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }
