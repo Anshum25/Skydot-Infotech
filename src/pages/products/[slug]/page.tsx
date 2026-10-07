@@ -201,7 +201,22 @@ export default function ProductDetail() {
                        exit={{ opacity: 0, y: -10 }}
                        className="h-full w-full"
                      >
-                       {activeTab === 0 ? <DashboardMockup /> : (
+                       {activeTab === 0 ? (
+                         slug === 'itms' ? (
+                           <div className="relative w-full h-full max-w-3xl mx-auto bg-card rounded-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border border-border overflow-hidden">
+                             <video 
+                               src="/Viedeo/export-1791351493444.mp4" 
+                               autoPlay 
+                               loop 
+                               muted 
+                               playsInline 
+                               className="w-full h-full object-cover"
+                             />
+                           </div>
+                         ) : (
+                           <DashboardMockup />
+                         )
+                       ) : (
                          <div className="h-full flex flex-col justify-center items-center text-center p-8 bg-secondary/10 rounded-xl border border-border/30">
                            <Box className="w-16 h-16 text-primary/40 mb-4" />
                            <h4 className="font-bold text-lg mb-2">Automated Workflows</h4>

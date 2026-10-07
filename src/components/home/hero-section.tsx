@@ -13,14 +13,57 @@ export function HomeHeroSection() {
   const labelRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
 
-  const logos = [
-    { icon: Building2, name: "Enterprise Corp", color: "text-blue-500" },
-    { icon: Hexagon, name: "TechGlobal", color: "text-emerald-500" },
-    { icon: Layers, name: "DataSystems", color: "text-violet-500" },
-    { icon: Cpu, name: "CloudWorks", color: "text-amber-500" },
-    { icon: Globe, name: "GlobalTrade", color: "text-cyan-500" },
-    { icon: Boxes, name: "LogisticsPlus", color: "text-rose-500" },
+  const logoFiles = [
+    "12.png",
+    "Millenio_Ventures_LLP_Logo-removebg-preview.png",
+    "WhatsApp Image 2026-10-05 at 12.15.09 PM.jpeg",
+    "WhatsApp Image 2026-10-05 at 12.15.29 PM.jpeg",
+    "WhatsApp Image 2026-10-05 at 12.16.29 PM.jpeg",
+    "WhatsApp Image 2026-10-05 at 12.19.15 PM.jpeg",
+    "download.jpg",
+    "download.png",
+    "metalix logo.png",
+    "shreelifecare-removebg-preview.png",
+    "sprecturm logo without name (1).png",
+    "verdict removebg-preview.png",
+    "vge_llp-removebg-preview.png",
+    "zrti_logo.png",
+    "{1965A5EA-585C-47E4-82BA-5D4453C7956B}.png",
+    "{21D9C22A-BB55-4507-BD0D-BD9972142ED9}.png",
+    "{3D4814A0-F5B2-4EA7-8AA8-B94B2A5DF761}.png",
+    "{62975BE5-7A5D-4F87-B4CF-86E51B560F91}.png",
+    "{63A40E57-CC72-4054-9892-19F71ADF5C8B}.png",
+    "{947C8066-32BB-482D-8368-590D89333B57}.png",
+    "{A9A609EB-8AD9-4654-B949-7000BDA9E7F8}.png",
+    "{CA86234D-B731-49A7-9242-25E268DD8C64}.png",
+    "{CF4E29D4-A7FD-4000-8F99-EFE97B90A82B}.png",
+    "{E4770F11-014E-4AFD-84A7-FFF552A4AB3B}.png",
+    "{EC50010A-A6E2-4C47-B4FE-9A1F68F385BD}.png",
+    "{F11F4791-2634-43BC-8944-CE9CA995A13C}.png",
+    "{F725BB55-6FB6-4673-B7D6-55F0802A7F1E}.png",
   ];
+
+  const getLogoName = (filename: string) => {
+    const knownNames: Record<string, string> = {
+      "shreelifecare-removebg-preview.png": "Shree Lifecare",
+      "sprecturm logo without name (1).png": "Spectrum Printech",
+      "verdict removebg-preview.png": "Verdict Group",
+      "vge_llp-removebg-preview.png": "VGE LLP",
+      "Millenio_Ventures_LLP_Logo-removebg-preview.png": "Millenio Ventures",
+      "metalix logo.png": "Metalix",
+      "zrti_logo.png": "ZRTI",
+    };
+    if (knownNames[filename]) return knownNames[filename];
+    if (filename.startsWith("{") || filename.startsWith("WhatsApp") || filename.startsWith("download") || filename === "12.png") {
+      return "";
+    }
+    return filename.split('.')[0];
+  };
+
+  const logos = logoFiles.map(file => ({
+    src: `/logo/${encodeURIComponent(file)}`,
+    name: getLogoName(file)
+  }));
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -99,26 +142,28 @@ export function HomeHeroSection() {
         </div>
 
         {/* Trusted By Marquee */}
-        <div ref={marqueeRef} className="mt-20 md:mt-28 border-t border-border/40 pt-8">
-          <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-6">
-            Trusted by Industry-Leading Organizations
+        <div ref={marqueeRef} className="mt-20 md:mt-28 border-t border-border/40 pt-8 text-center md:text-left">
+          <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest mb-8 md:mb-6 text-center">
+            TRUSTED BY GLOBAL TEAMS
           </p>
           <div className="w-full overflow-hidden relative group">
             {/* Gradient Fades for edges */}
             <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-            <div className="flex w-max animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]">
+            <div className="flex items-center w-max animate-[marquee_60s_linear_infinite] group-hover:[animation-play-state:paused]">
               {/* Double the logos to create the infinite scroll effect */}
-              {[...logos, ...logos, ...logos, ...logos].map((logo, i) => (
+              {[...logos, ...logos].map((logo, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 mx-6 md:mx-10 opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-default group/logo"
+                  className="flex items-center gap-3 mx-6 md:mx-10 opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-default group/logo"
                 >
-                  <logo.icon className={`w-6 h-6 ${logo.color}`} />
-                  <span className="font-semibold text-muted-foreground group-hover/logo:text-foreground text-sm tracking-tight whitespace-nowrap transition-colors">
-                    {logo.name}
-                  </span>
+                  <img src={logo.src} alt={logo.name || "Client Logo"} className="h-8 md:h-10 w-auto object-contain max-w-[100px]" />
+                  {logo.name && (
+                    <span className="font-semibold text-muted-foreground group-hover/logo:text-foreground text-sm tracking-tight whitespace-nowrap transition-colors">
+                      {logo.name}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
