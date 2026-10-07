@@ -13,18 +13,18 @@ export interface CaseStudy {
 
 export const caseStudies: Record<string, CaseStudy> = {
   "national-railway-infrastructure": {
-    title: "Digitizing National Railway Infrastructure Tracking",
+    title: "Transforming Training Lifecycle with ITMS",
     slug: "national-railway-infrastructure",
     client: "Indian Railways",
     industry: "Government & Railways",
-    summary: "A comprehensive digital transformation of track patrolling, replacing manual logs with a real-time GPS-enabled tracking system.",
-    challenge: "Managing thousands of kilometers of track requires rigorous daily inspections. The legacy paper-based system resulted in delayed reporting, lack of accountability, and vulnerability to human error.",
-    solution: "Skydot engineered the IRTPMS platform, equipping patrolmen with a secure mobile application featuring offline sync capabilities. The system aggregates GPS data and patrol logs into a central dashboard for regional managers, automating compliance reporting.",
+    summary: "An integrated digital platform designed to manage and streamline the complete training lifecycle of an institute into a single centralized system.",
+    challenge: "Managing training planning, course management, trainee records, and faculty attendance manually led to massive inefficiencies, delayed reporting, and fragmented assessments across the institute.",
+    solution: "Skydot engineered the ITMS (Institute Training Management System) platform, bringing training planning, course management, attendance, assessments, examinations, and detailed reporting into a unified, secure dashboard.",
     results: [
-      { metric: "100%", description: "Digitization of daily patrol logs." },
-      { metric: "Real-time", description: "Visibility into asset compliance across regions." }
+      { metric: "100%", description: "Digitization of training lifecycle and assessments." },
+      { metric: "Real-time", description: "Visibility into trainee records and faculty management." }
     ],
-    technologies: ["React Native", "Node.js", "PostgreSQL", "GPS/Geo-fencing"],
+    technologies: ["PHP", "Django", "MySQL", "Apache Superset"],
     imageUrl: "/placeholder.svg"
   },
   "enterprise-erp-manufacturing": {

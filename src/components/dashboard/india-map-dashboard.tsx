@@ -3,54 +3,38 @@ import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const locations = {
-  industrial: [
-    { name: "Metalix Cable Trays, Hyderabad", pos: { lat: 17.4043, lng: 78.4423 } },
-    { name: "Uzzala Bio Energy Solutions, Ahmedabad", pos: { lat: 23.0225, lng: 72.5714 } },
-    { name: "Verdict Group, Ahmedabad", pos: { lat: 23.0225, lng: 72.5714 } },
-    { name: "R & R Synergies, Hyderabad", pos: { lat: 17.3871, lng: 78.4917 } },
-  ],
-  educational: [
-    {
-      name: "National Academy of Agricultural Research Management (NAARM), Hyderabad",
-      pos: { lat: 17.3151, lng: 78.4107 },
-    },
-    {
-      name: "All India Institute of Medical Science (AIIMS), Jodhpur",
-      pos: { lat: 26.2515, lng: 73.0243 },
-    },
-    {
-      name: "Institute of Teaching and Research in Ayurveda (ITRA), Jamnagar",
-      pos: { lat: 22.4707, lng: 70.0577 },
-    },
-  ],
-  railway: [
-    {
-      name: "National Academy of Indian Railways (NAIR), Vadodara",
-      pos: { lat: 22.2994, lng: 73.2081 },
-    },
-    {
-      name: "Indian Railways Institute of Mechanical and Electrical Engineering (IRIMEE), Jamalpur",
-      pos: { lat: 24.9199, lng: 86.2176 },
-    },
-    {
-      name: "Indian Railways Institute of Signal and Telecommunication Engineering (IRISET), Secunderabad",
-      pos: { lat: 17.4361, lng: 78.4986 },
-    },
-    {
-      name: "Indian Railways Institute of Disaster Management (IRIDM), Bengaluru",
-      pos: { lat: 12.9716, lng: 77.5946 },
-    },
-    {
-      name: "Zonal Railway Training Institute (ZRTI), Udaipur",
-      pos: { lat: 24.5713, lng: 73.691 },
-    },
-    { name: "STTI Byculla", pos: { lat: 18.9904, lng: 72.8408 } },
-    { name: "STTI Pandu", pos: { lat: 26.1767, lng: 91.7073 } },
-    { name: "STTI Podanur", pos: { lat: 11.006, lng: 76.956 } },
-    { name: "STTI Sabarmati", pos: { lat: 23.0755, lng: 72.5667 } },
-    { name: "MDDTI Bengaluru", pos: { lat: 12.9716, lng: 77.5946 } },
-    { name: "Diesel Loco Shed, Andal (Asansol)", pos: { lat: 23.1301, lng: 87.1116 } },
-  ],
+  institutes: [
+    { name: "National Academy of Indian Railways (NAIR), Vadodara", pos: { lat: 22.2994, lng: 73.2081 } },
+    { name: "National Academy of Agricultural Research Management (NAARM), Hyderabad", pos: { lat: 17.3151, lng: 78.4107 } },
+    { name: "Indian Railways Institute of Mechanical and Electrical Engineering (IRIMEE), Jamalpur", pos: { lat: 24.9199, lng: 86.2176 } },
+    { name: "Indian Railways Institute of Signal and Telecommunication Engineering (IRISET), Secunderabad", pos: { lat: 17.4361, lng: 78.4986 } },
+    { name: "Indian Railways Institute of Disaster Management (IRIDM), Bengaluru", pos: { lat: 12.9716, lng: 77.5946 } },
+    { name: "Multi-Disciplinary Divisional Training Institute (MDDTI), Bengaluru", pos: { lat: 12.98, lng: 77.60 } },
+    { name: "Zonal Railway Training Institute (ZRTI), Udaipur", pos: { lat: 24.5713, lng: 73.691 } },
+    { name: "Zonal Railway Training Institute (ZRTI), Alipurduar, WB", pos: { lat: 26.4919, lng: 89.5271 } },
+    { name: "Signal and Telecom Training Institute (STTI), Sabarmati, Ahmedabad", pos: { lat: 23.0755, lng: 72.5667 } },
+    { name: "Signal and Telecom Training Institute (STTI), Byculla, Mumbai", pos: { lat: 18.9904, lng: 72.8408 } },
+    { name: "Signal and Telecom Training Institute (STTI), Pandu, Assam", pos: { lat: 26.1767, lng: 91.7073 } },
+    { name: "Signal and Telecom Training Institute (STTI), Podanur, Tamil Nadu", pos: { lat: 11.006, lng: 76.956 } },
+    { name: "Specialised Training Institute (STI), Ajmer, Rajasthan", pos: { lat: 26.4499, lng: 74.6399 } },
+    { name: "Agricultural Co-operative Staff Training Institute (ACSTI), Shimla", pos: { lat: 31.1048, lng: 77.1734 } },
+    { name: "All India Institute of Medical Science (AIIMS), Jodhpur", pos: { lat: 26.2515, lng: 73.0243 } },
+    { name: "Institute of Teaching and Research in Ayurveda (ITRA), Jamnagar", pos: { lat: 22.4707, lng: 70.0577 } },
+    { name: "Diesel Loco Shed, Andal, Asansol, WB", pos: { lat: 23.5907, lng: 87.1856 } },
+    { name: "Divisional Railway Manager, Vadodara", pos: { lat: 22.3072, lng: 73.1812 } },
+    { name: "Divisional Railway Manager, Jabalpur", pos: { lat: 23.1815, lng: 79.9864 } },
+    { name: "Divisional Railway Manager, Kota", pos: { lat: 25.2138, lng: 75.8648 } },
+    { name: "Divisional Railway Manager, Gwalior", pos: { lat: 26.2124, lng: 78.1772 } },
+    { name: "Divisional Railway Manager, Agra", pos: { lat: 27.1767, lng: 78.0081 } },
+    { name: "Divisional Railway Manager, Howrah", pos: { lat: 22.5958, lng: 88.3110 } },
+    { name: "Divisional Railway Manager, Guntakal", pos: { lat: 15.1674, lng: 77.3813 } },
+    { name: "Divisional Railway Manager, Secunderabad", pos: { lat: 17.4399, lng: 78.4983 } },
+    { name: "Divisional Railway Manager, Vijayawada", pos: { lat: 16.5062, lng: 80.6480 } },
+    { name: "Divisional Railway Manager, Kacheguda", pos: { lat: 17.3888, lng: 78.4975 } },
+    { name: "Divisional Railway Manager, Nanded", pos: { lat: 19.1383, lng: 77.3210 } },
+    { name: "Divisional Railway Manager, Agartala", pos: { lat: 23.8315, lng: 91.2868 } },
+    { name: "District Institute of Education & Training (DIET'S), Gujarat", pos: { lat: 23.2156, lng: 72.6369 } },
+  ]
 };
 
 const mapOptions = {
@@ -85,7 +69,7 @@ export function IndiaMapDashboard() {
   type Location = { name: string; pos: { lat: number; lng: number } };
 
   const allLocations = useMemo(() => {
-    return [...locations.railway];
+    return [...locations.institutes];
   }, []);
 
   useEffect(() => {
@@ -165,10 +149,10 @@ export function IndiaMapDashboard() {
             <div className="overflow-y-auto p-4 space-y-6 flex-1 min-h-0 custom-scrollbar overscroll-contain" data-lenis-prevent="true">
               <div>
                 <h4 className="text-sm font-bold text-[var(--skydot-blue)] uppercase tracking-wider mb-3">
-                  Railway Institutes
+                  Our Institutes
                 </h4>
                 <ul className="space-y-1">
-                  {locations.railway.map((loc) => (
+                  {locations.institutes.map((loc) => (
                     <li
                       key={loc.name}
                       onClick={() => handleLocationClick(loc)}

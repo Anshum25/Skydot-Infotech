@@ -113,9 +113,26 @@ export default function ProductDetail() {
             <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-            <div className="flex w-max animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]">
+            <div className="flex w-max animate-[marquee_50s_linear_infinite] group-hover:[animation-play-state:paused]">
               {/* Double the logos to create the infinite scroll effect */}
-              {Array(4).fill(slug === 'frappe-apps' ? [
+              {Array(4).fill(
+                slug === 'itms' ? [
+                  { src: "/logo/zrti_logo.png", name: "ZRTI" },
+                  { src: "/logo/download.jpg", name: "Indian railways" },
+                  { src: "/logo/download.png", name: "AIIMS - Jodhpur" },
+                  { src: "/logo/{1965A5EA-585C-47E4-82BA-5D4453C7956B}.png", name: "Diesel Loco Shed" },
+                  { src: "/logo/{21D9C22A-BB55-4507-BD0D-BD9972142ED9}.png", name: "DIET'S - Rajkot" },
+                  { src: "/logo/{3D4814A0-F5B2-4EA7-8AA8-B94B2A5DF761}.png", name: "IRISET - Secunderabad" },
+                  { src: "/logo/{62975BE5-7A5D-4F87-B4CF-86E51B560F91}.png", name: "HPSCB" },
+                  { src: "/logo/{63A40E57-CC72-4054-9892-19F71ADF5C8B}.png", name: "IRIDM" },
+                  { src: "/logo/{A9A609EB-8AD9-4654-B949-7000BDA9E7F8}.png", name: "ITRA - Jamnagar" },
+                  { src: "/logo/{CA86234D-B731-49A7-9242-25E268DD8C64}.png", name: "DIET'S - Mahesana" },
+                  { src: "/logo/{CF4E29D4-A7FD-4000-8F99-EFE97B90A82B}.png", name: "ICAR" },
+                  { src: "/logo/{E4770F11-014E-4AFD-84A7-FFF552A4AB3B}.png", name: "IRIMEE - Jamalpur" },
+                  { src: "/logo/{EC50010A-A6E2-4C47-B4FE-9A1F68F385BD}.png", name: "STTI - Pandu" },
+                  { src: "/logo/{F725BB55-6FB6-4673-B7D6-55F0802A7F1E}.png", name: "STTC" }
+                ] :
+                slug === 'frappe-apps' ? [
                 { name: "ERPNext", icon: Database, color: "text-blue-500" },
                 { name: "Frappe HR", icon: Users, color: "text-rose-500" },
                 { name: "Frappe Books", icon: BookOpen, color: "text-amber-500" },
@@ -131,15 +148,31 @@ export default function ProductDetail() {
                 { name: "ORG D", icon: Box, color: "text-muted-foreground" },
                 { name: "BRAND E", icon: Target, color: "text-muted-foreground" },
                 { name: "COMPANY F", icon: Database, color: "text-muted-foreground" }
-              ]).flat().map((item, i) => (
+              ]).flat().map((item: any, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2.5 mx-6 md:mx-10 opacity-60 hover:opacity-100 transition-opacity duration-300 cursor-default"
+                  className="flex items-center gap-2.5 mx-6 md:mx-10 opacity-80 hover:opacity-100 transition-opacity duration-300 cursor-default"
                 >
-                  <item.icon className={`w-6 h-6 ${item.color}`} />
-                  <span className="font-semibold text-foreground/80 text-base md:text-lg tracking-tight whitespace-nowrap transition-colors">
-                    {item.name}
-                  </span>
+                  {item.src ? (
+                    <>
+                      <img 
+                        src={item.src} 
+                        alt={item.name} 
+                        className="h-7 md:h-8 w-auto object-contain transition-all duration-300" 
+                        loading="lazy"
+                      />
+                      <span className="font-semibold text-foreground/80 text-sm md:text-base tracking-tight whitespace-nowrap transition-colors">
+                        {item.name}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <item.icon className={`w-5 h-5 ${item.color}`} />
+                      <span className="font-semibold text-foreground/80 text-sm md:text-base tracking-tight whitespace-nowrap transition-colors">
+                        {item.name}
+                      </span>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
