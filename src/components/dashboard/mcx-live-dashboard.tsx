@@ -13,20 +13,9 @@ interface McxData {
 }
 
 
-const initialData: McxData[] = [
-  { symbol: "MCX Gold", last: 150531.00, change: 1214.00, changePercent: 0.81, close: 149316.00, high: 150575.00, low: 148701.00, lastTrade: "17:57" },
-  { symbol: "MCX Gold Mini", last: 149225.00, change: 1065.00, changePercent: 0.72, close: 148160.00, high: 149299.00, low: 147635.00, lastTrade: "17:57" },
-  { symbol: "MCX Silver", last: 227482.00, change: 1395.00, changePercent: 0.62, close: 226087.00, high: 228075.00, low: 224377.00, lastTrade: "17:57" },
-  { symbol: "MCX Silver Mini", last: 229469.00, change: 1292.00, changePercent: 0.57, close: 228177.00, high: 230000.00, low: 226508.00, lastTrade: "17:57" },
-  { symbol: "MCX Silver Micro", last: 229416.00, change: 1159.00, changePercent: 0.51, close: 228257.00, high: 229999.00, low: 226600.00, lastTrade: "17:57" },
-  { symbol: "MCX Crude Oil", last: 8415.00, change: -254.00, changePercent: -2.93, close: 8669.00, high: 8694.00, low: 8391.00, lastTrade: "17:57" },
-  { symbol: "MCX Natural Gas", last: 296.80, change: 1.70, changePercent: 0.58, close: 295.10, high: 299.80, low: 296.20, lastTrade: "17:57" },
-  { symbol: "MCX Copper", last: 835.45, change: 4.25, changePercent: 0.51, close: 831.20, high: 838.50, low: 830.10, lastTrade: "17:57" },
-  { symbol: "MCX Zinc", last: 284.15, change: 2.10, changePercent: 0.74, close: 282.05, high: 285.40, low: 281.50, lastTrade: "17:57" }
-];
 
 export function McxLiveDashboard() {
-  const [data, setData] = useState<McxData[]>(initialData);
+  const [data, setData] = useState<McxData[]>([]);
   const [loading, setLoading] = useState(true);
 
   // Map MCX symbols to Yahoo Finance global futures symbols
@@ -44,56 +33,102 @@ export function McxLiveDashboard() {
 
   const fetchLiveData = async () => {
     try {
-      const updatedData = await Promise.all(data.map(async (item) => {
-        const ySymbol = yahooSymbols[item.symbol];
-        if (!ySymbol) return item;
-        try {
-          // Direct fetch to Yahoo v8 chart API (often permits CORS)
-          const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ySymbol}?interval=1m&range=1d`;
-          const response = await fetch(url);
-          
-          if (!response.ok) throw new Error("API not ok");
-          const json = await response.json();
-          const result = json.chart.result[0];
-          const meta = result.meta;
-          
-          const conversion = item.symbol.includes("Gold") ? 75 : (item.symbol.includes("Silver") ? 7500 : 80);
-          const last = meta.regularMarketPrice * conversion;
-          const prevClose = meta.chartPreviousClose * conversion;
-          const change = last - prevClose;
-          
-          return {
-            ...item,
-            last,
-            change,
-            changePercent: (change / prevClose) * 100,
-            close: prevClose,
-            high: meta.regularMarketDayHigh ? meta.regularMarketDayHigh * conversion : item.high,
-            low: meta.regularMarketDayLow ? meta.regularMarketDayLow * conversion : item.low,
-            lastTrade: new Date(meta.regularMarketTime * 1000).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
-          };
-        } catch (err) {
-          // Fallback to simulated tick if fetch fails (e.g. CORS block) so dashboard remains "alive"
-          const volatility = item.last * 0.0002;
-          const changeAmt = (Math.random() - 0.5) * volatility;
-          const newLast = item.last + changeAmt;
-          const newChange = newLast - item.close;
-          
-          return {
-            ...item,
-            last: newLast,
-            change: newChange,
-            changePercent: (newChange / item.close) * 100,
-            high: Math.max(item.high, newLast),
-            low: Math.min(item.low, newLast),
-            lastTrade: new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
-          };
-        }
-      }));
+      const mcxSymbols = Object.keys(yahooSymbols);
+      const allYahooSymbols = mcxSymbols.map(s => yahooSymbols[s]);
       
-      setData(updatedData);
+      // Use v8 spark endpoint which allows bulk fetching without crumb/auth, avoiding 429 rate limits
+      const res = await fetch(`/api/yahoo/v8/finance/spark?symbols=${allYahooSymbols.join(',')},INR=X&range=1d&interval=1m`);
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      
+      const json = await res.json();
+      
+      // Get live USD to INR exchange rate, fallback to 83.5 if blocked
+      let USD_INR = 83.5;
+      const inrData = json['INR=X'];
+      if (inrData && inrData.close && inrData.close.length > 0) {
+        USD_INR = inrData.close[inrData.close.length - 1];
+      }
+      
+      // Indian taxes/duties on precious metals (approximate 15% import duty + 3% GST)
+      const METAL_DUTY_MULTIPLIER = 1.15 * 1.03;
+
+      setData(prevData => {
+        const updatedData = mcxSymbols.map((symbol) => {
+          const ySymbol = yahooSymbols[symbol];
+          const dataNode = json[ySymbol];
+          
+          if (!dataNode || !dataNode.close || dataNode.close.length === 0) {
+            const existing = prevData.find(p => p.symbol === symbol);
+            return existing || null;
+          }
+
+          const closes = dataNode.close;
+          let calculatedPrice = closes[closes.length - 1];
+          let calculatedPrevClose = dataNode.previousClose || calculatedPrice;
+          
+          let dayHigh = Math.max(...closes);
+          let dayLow = Math.min(...closes);
+
+          // Convert COMEX USD prices to precise MCX INR specifications
+          if (symbol.includes("Gold")) {
+            const conversionFactor = (10 / 31.1035) * USD_INR * METAL_DUTY_MULTIPLIER;
+            calculatedPrice = calculatedPrice * conversionFactor;
+            calculatedPrevClose = calculatedPrevClose * conversionFactor;
+            dayHigh = dayHigh * conversionFactor;
+            dayLow = dayLow * conversionFactor;
+          } 
+          else if (symbol.includes("Silver")) {
+            const conversionFactor = (1000 / 31.1035) * USD_INR * METAL_DUTY_MULTIPLIER;
+            calculatedPrice = calculatedPrice * conversionFactor;
+            calculatedPrevClose = calculatedPrevClose * conversionFactor;
+            dayHigh = dayHigh * conversionFactor;
+            dayLow = dayLow * conversionFactor;
+          } 
+          else if (symbol.includes("Crude Oil") || symbol.includes("Natural Gas")) {
+            calculatedPrice = calculatedPrice * USD_INR;
+            calculatedPrevClose = calculatedPrevClose * USD_INR;
+            dayHigh = dayHigh * USD_INR;
+            dayLow = dayLow * USD_INR;
+          }
+          else if (symbol.includes("Copper")) {
+            const conversionFactor = (1 / 0.453592) * USD_INR;
+            calculatedPrice = calculatedPrice * conversionFactor;
+            calculatedPrevClose = calculatedPrevClose * conversionFactor;
+            dayHigh = dayHigh * conversionFactor;
+            dayLow = dayLow * conversionFactor;
+          }
+          else if (symbol.includes("Zinc")) {
+            const conversionFactor = (1 / 1000) * USD_INR;
+            calculatedPrice = calculatedPrice * conversionFactor;
+            calculatedPrevClose = calculatedPrevClose * conversionFactor;
+            dayHigh = dayHigh * conversionFactor;
+            dayLow = dayLow * conversionFactor;
+          }
+
+          const change = calculatedPrice - calculatedPrevClose;
+          const changePercent = (change / calculatedPrevClose) * 100;
+          
+          // Get the latest timestamp for this symbol
+          const timestamps = dataNode.timestamp || [];
+          const lastTime = timestamps.length > 0 ? timestamps[timestamps.length - 1] * 1000 : Date.now();
+
+          return {
+            symbol: symbol,
+            last: calculatedPrice,
+            change: change,
+            changePercent: changePercent,
+            close: calculatedPrevClose,
+            high: dayHigh,
+            low: dayLow,
+            lastTrade: new Date(lastTime).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
+          };
+        });
+        
+        return updatedData.filter(Boolean) as McxData[];
+      });
+
     } catch (error) {
-      console.error("Failed to update dashboard data:", error);
+      console.error("Global fetch failure:", error);
     } finally {
       setLoading(false);
     }
@@ -102,10 +137,10 @@ export function McxLiveDashboard() {
   useEffect(() => {
     fetchLiveData(); // Initial fetch
     
-    // Poll every 1.5 seconds for live updates
+    // Poll every 30 seconds for live updates to prevent rate limits
     const interval = setInterval(() => {
       fetchLiveData();
-    }, 1500);
+    }, 30000);
     
     return () => clearInterval(interval);
   }, []);
