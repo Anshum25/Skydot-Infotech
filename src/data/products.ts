@@ -58,13 +58,13 @@ export const products: Product[] = [
     verified: true
   },
   {
-    title: "CMS",
+    title: "Course Management System (CMS)",
     slug: "cms",
-    category: "Enterprise",
-    description: "Content Management System tailored for large-scale enterprise content delivery.",
-    features: ["Role-based access", "Media management", "Workflow approvals"],
+    category: "Education Technology",
+    description: "One system for every course, batch and trainee. Plan batches, track attendance, manage faculty and publish results from one dashboard.",
+    features: ["Batches", "Trainees", "Attendance", "Faculty", "Results"],
     screenshots: [],
-    industries: ["Media", "Enterprise"],
+    industries: ["Education", "Corporate Training"],
     technologies: ["Next.js", "PostgreSQL", "Prisma"],
     verified: true
   },

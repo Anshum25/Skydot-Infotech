@@ -96,18 +96,24 @@ export const detailedProducts: Record<string, ProductDetailData> = {
     relatedSolutions: [{ title: "Cloud & Infrastructure", slug: "cloud-infrastructure" }]
   },
   "cms": {
-    title: "CMS",
-    category: "Enterprise",
-    description: "Content Management System tailored for large-scale enterprise content delivery.",
-    overview: "A powerful CMS designed to handle vast amounts of content with role-based access control and media management.",
-    problemSolved: "Simplifies content publication workflows across large organizations.",
-    features: ["Role-based access", "Media management", "Workflow approvals"],
-    benefits: [
-      { title: "Scalability", description: "Handles high traffic and large media assets." },
-      { title: "Collaboration", description: "Streamlines editorial workflows." }
+    title: "Course Management System (CMS)",
+    category: "Education Technology",
+    description: "One system for every course, batch and trainee. Plan batches, track attendance, manage faculty and publish results from one dashboard.",
+    overview: "Plan batches, track attendance, manage faculty and publish results from one dashboard. No more registers, spreadsheets and lost circulars. It replaces paper attendance registers, separate Excel sheets, batch calendars kept in email, and result sheets passed around for sign-off.",
+    problemSolved: "Replaces paper attendance registers, separate Excel sheets, batch calendars kept in email, result sheets passed around for sign-off, and chasing zones for nominations by phone.",
+    features: [
+      "Batches: Create batches, set dates, and follow progress.",
+      "Trainees: Complete records for every trainee including history, attendance, and results.",
+      "Attendance: Mark sessions quickly with auto-flagging for low attendance.",
+      "Faculty & Results: Manage timetables, marks, sign-offs, and leave schedules.",
+      "Nominations & Campus: Online nominations and tracking for hostel beds, labs, and classrooms."
     ],
-    targetUsers: ["Media Publishers", "Enterprise Marketing Teams"],
-    relatedSolutions: [{ title: "Web Development", slug: "web-software-development" }]
+    benefits: [
+      { title: "Faster setup & Less errors", description: "Faster batch set-up and fewer manual attendance and result errors." },
+      { title: "Streamlined Reporting", description: "Less time spent compiling monthly reports with one record per trainee across their whole career." }
+    ],
+    targetUsers: ["Training coordinators", "Faculty", "Zonal nominating officers", "Directors"],
+    relatedSolutions: [{ title: "ITMS", slug: "itms" }]
   },
   "pos": {
     title: "POS (Point of Sale)",
