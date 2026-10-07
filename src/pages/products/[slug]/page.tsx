@@ -103,6 +103,7 @@ export default function ProductDetail() {
       </PageHeader>
 
       {/* 2. TRUST STRIP */}
+      {slug !== 'cms' && (
       <section className="home-section py-16 bg-background border-t border-border">
         <div className="container mx-auto px-6 md:px-12">
           <p className="home-label mb-10 text-center">
@@ -179,6 +180,7 @@ export default function ProductDetail() {
           </div>
         </div>
       </section>
+      )}
 
       {/* 3. CAPABILITIES GRID (Feature Highlights) */}
       {slug !== 'mcx-apis' && (

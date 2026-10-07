@@ -15,7 +15,6 @@ export function HomeHeroSection() {
 
 
   const knownNames: Record<string, string> = {
-    "moodle_logo_TM.svg": "Moodle",
     "shreelifecare-removebg-preview.png": "Shree Lifecare",
     "sprecturm logo without name (1).png": "Spectrum Printech",
     "verdict removebg-preview.png": "Verdict Group",
