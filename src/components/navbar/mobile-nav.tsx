@@ -69,14 +69,27 @@ export function MobileNav() {
                 <AccordionContent>
                   <div className="flex flex-col space-y-2">
                     {products.slice(0, 6).map((product) => (
-                      <Link
-                        key={product.slug}
-                        to={`/products/${product.slug}`}
-                        className="text-muted-foreground hover:text-primary py-1"
-                        onClick={() => setOpen(false)}
-                      >
-                        {product.title}
-                      </Link>
+                      product.externalUrl ? (
+                        <a
+                          key={product.slug}
+                          href={product.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary py-1"
+                          onClick={() => setOpen(false)}
+                        >
+                          {product.title}
+                        </a>
+                      ) : (
+                        <Link
+                          key={product.slug}
+                          to={`/products/${product.slug}`}
+                          className="text-muted-foreground hover:text-primary py-1"
+                          onClick={() => setOpen(false)}
+                        >
+                          {product.title}
+                        </Link>
+                      )
                     ))}
                     <Link
                       to="/products"

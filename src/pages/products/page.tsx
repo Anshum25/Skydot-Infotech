@@ -58,7 +58,7 @@ const products = [
     title: "MOODLE",
     icon: <Database className="w-6 h-6 text-primary" />,
     description: "Customized Moodle deployment for scalable and highly interactive e-learning platforms.",
-    href: "/products/moodle"
+    href: "https://skylms.in"
   },
   {
     id: "mcx-apis",

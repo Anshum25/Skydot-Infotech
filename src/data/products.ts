@@ -55,7 +55,8 @@ export const products: Product[] = [
     screenshots: [],
     industries: ["Education", "Corporate Training", "Institutions"],
     technologies: ["PHP", "MariaDB", "Linux", "React"],
-    verified: true
+    verified: true,
+    externalUrl: "https://skylms.in"
   },
   {
     title: "Course Management System (CMS)",

@@ -119,7 +119,7 @@ export default function ProductDetail() {
               {Array(4).fill(
                 slug === 'itms' ? [
                   { src: "/logo/zrti_logo.png", name: "ZRTI" },
-                  { src: "/logo/download.jpg", name: "Indian railways" },
+                  { src: "/logo/{947C8066-32BB-482D-8368-590D89333B57}.png", name: "Indian railways" },
                   { src: "/logo/download.png", name: "AIIMS - Jodhpur" },
                   { src: "/logo/{1965A5EA-585C-47E4-82BA-5D4453C7956B}.png", name: "Diesel Loco Shed" },
                   { src: "/logo/{21D9C22A-BB55-4507-BD0D-BD9972142ED9}.png", name: "DIET'S - Rajkot" },
